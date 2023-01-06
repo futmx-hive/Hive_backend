@@ -1,0 +1,16 @@
+export type operationType =
+	| "delete"
+	| "invalidate"
+	| "update"
+	| "replace"
+	| "drop"
+	| "rename"
+	| "dropDatabase"
+	| "createIndexes"
+	| "create"
+	| "modify"
+	| "dropIndexes"
+	| "shardCollection"
+	| "reshardCollection"
+	| "refineCollectionShardKey"
+	| "insert";
