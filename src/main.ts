@@ -4,6 +4,7 @@ import { NestFactory } from "@nestjs/core";
 import helmet from "helmet";
 import { AppModule } from "./app.module";
 import { HttpExceptionFilter } from "./shared/errors/global.filter";
+import * as cookieParser from "cookie-parser";
 // glpat-JvHxnQFn2GrnVdgP-JD3
 
 async function bootstrap() {
@@ -15,6 +16,7 @@ async function bootstrap() {
 	const port = app.get(ConfigService).get<number>("PORT");
 	app.setGlobalPrefix("/api/v1/");
 	app.use(helmet());
+	app.use(cookieParser());
 	app.useGlobalPipes(new ValidationPipe());
 	app.useGlobalFilters(new HttpExceptionFilter());
 

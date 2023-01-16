@@ -34,4 +34,16 @@ export class EnvVarDTO {
 	@IsNotEmpty()
 	@IsString()
 	GITHUB_ACCESS_TOKEN: string;
+
+	@IsNotEmpty()
+	@IsString()
+	EMAIL_SERVICE_PUBLIC_KEY: string;
+
+	@IsNotEmpty()
+	@IsString()
+	EMAIL_SERVICE_PRIVATE_KEY: string;
+
+	@IsNotEmpty()
+	@IsString()
+	GMAIL_SERVICE_ID: string;
 }

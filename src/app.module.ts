@@ -6,6 +6,7 @@ import { MongooseModule } from "@nestjs/mongoose";
 import databaseConfig from "./config/database/database.config";
 import { DatabaseProvider } from "./config/database/database.config.provider";
 import { SearchModule } from "./shared/search/search.module";
+import { AuthModule } from "./auth/auth.module";
 
 @Module({
 	imports: [
@@ -19,6 +20,7 @@ import { SearchModule } from "./shared/search/search.module";
 		}),
 		ProjectModule,
 		SearchModule,
+		AuthModule,
 	],
 })
 export class AppModule {}
