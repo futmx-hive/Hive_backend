@@ -17,14 +17,21 @@ export class UserService {
 		private readonly authService: AuthService,
 	) {}
 
-	async createUser<T extends PasswordlessAuthDTO>(userData: T) {
+	async createUser<T extends PasswordlessAuthDTO>(
+		userData: T,
+		isNew = false,
+	) {
 		const { email, connection_type, ...rest } = userData;
-		const existingUser = await this.authService.findByEmail(email);
-		if (existingUser && connection_type !== "passwordless") {
-			throw new BadRequestException("user already exists please login");
-		}
-		if (connection_type === "passwordless" && existingUser) {
-			return existingUser;
+		if (!isNew) {
+			const existingUser = await this.authService.findByEmail(email);
+			if (existingUser && connection_type !== "passwordless") {
+				throw new BadRequestException(
+					"user already exists please login",
+				);
+			}
+			if (connection_type === "passwordless" && existingUser) {
+				return existingUser;
+			}
 		}
 		try {
 			const newUser = await this.users.create({
@@ -63,8 +70,8 @@ export class UserService {
 				},
 				update,
 			);
-			console.log({ updated });
 		} catch (error) {
+			console.log(error);
 			if (error instanceof MongooseError) {
 				throw new BadRequestException(
 					"error occured while updating details please try again",

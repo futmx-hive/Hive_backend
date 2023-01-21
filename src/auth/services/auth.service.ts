@@ -31,8 +31,13 @@ export class AuthService {
 		}
 	}
 
-	SignToken(data: TokenPayload): string {
-		const token = this.jwtService.sign(data);
+	SignToken(data: UserDoc): string {
+		const payload: TokenPayload = {
+			sub: data._id,
+			email: data.email,
+			nonce: "90000iuixkw",
+		};
+		const token = this.jwtService.sign(payload);
 		return token;
 	}
 }

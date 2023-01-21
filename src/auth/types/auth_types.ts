@@ -8,7 +8,7 @@ export enum Roles {
 export type connectionTypes = "passwordless" | "sso-google";
 
 export type TokenPayload = {
-	sub: number;
+	sub: string;
 	nonce: string;
 	email: string;
 };

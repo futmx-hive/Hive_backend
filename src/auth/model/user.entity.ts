@@ -28,10 +28,17 @@ export class UserEntity {
 	picture: string;
 	@Prop({ index: true, required: true, trim: true })
 	email: string;
+	@Prop({ index: true, trim: true, default: undefined })
+	occupation?: string;
 	@Prop({ default: false })
 	email_verified: boolean;
-	@Prop({ index: true, trim: true, minlength: 8, maxlength: 10 })
-	phone: string;
+	@Prop({
+		index: true,
+		trim: true,
+		minlength: 8,
+		maxlength: 10,
+	})
+	phone?: string;
 	@Prop({ default: false })
 	phone_verified: boolean;
 	@Prop({ default: Roles.BASIC, required: false })

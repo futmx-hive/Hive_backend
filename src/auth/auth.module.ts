@@ -1,15 +1,17 @@
 import { Module } from "@nestjs/common";
-import { ConfigService } from "@nestjs/config";
 import { JwtModule } from "@nestjs/jwt";
 import { MongooseModule } from "@nestjs/mongoose";
 import { PassportModule } from "@nestjs/passport";
+import { UtilsService } from "src/utils";
 import { AuthController } from "./auth.controller";
 import { OTP, OTPSchema } from "./model/otp.entity";
 import { UserEntity, UserSchema } from "./model/user.entity";
 import { EmailAuthService } from "./services/auth.email.service";
+import { GoogleAuthService } from "./services/auth.google.service";
 import { AuthService } from "./services/auth.service";
 import { OtpService } from "./services/otp.service";
 import { UserService } from "./services/user.service";
+import { JwtStrategy } from "./strategies/jwt.strategy";
 import { keys } from "./utils/getKeys";
 
 @Module({
@@ -32,7 +34,16 @@ import { keys } from "./utils/getKeys";
 			},
 		}),
 	],
-	providers: [OtpService, UserService, EmailAuthService, AuthService],
+	providers: [
+		OtpService,
+		UserService,
+		EmailAuthService,
+		AuthService,
+		GoogleAuthService,
+		UtilsService,
+		JwtStrategy,
+	],
 	controllers: [AuthController],
+	exports: [UtilsService],
 })
 export class AuthModule {}

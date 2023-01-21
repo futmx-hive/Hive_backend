@@ -7,9 +7,15 @@ import databaseConfig from "./config/database/database.config";
 import { DatabaseProvider } from "./config/database/database.config.provider";
 import { SearchModule } from "./shared/search/search.module";
 import { AuthModule } from "./auth/auth.module";
+import { BookmarkModule } from "./bookmark/bookmark.module";
+import { ProfileModule } from "./profile/profile.module";
 
 @Module({
 	imports: [
+		ProfileModule,
+
+		BookmarkModule,
+
 		ConfigModule.forRoot({
 			isGlobal: true,
 			validate: validateENV,

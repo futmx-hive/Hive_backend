@@ -17,14 +17,13 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
 	async validate(payload: TokenPayload) {
 		console.log({ payload });
-		const user = await this.authService.findByEmail(payload.email);
 
-		if (!user) {
+		if (!payload) {
 			throw new UnauthorizedException({
 				message: "invalid credentials",
 				success: false,
 			});
 		}
-		return { ...user };
+		return { ...payload };
 	}
 }

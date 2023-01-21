@@ -46,4 +46,12 @@ export class EnvVarDTO {
 	@IsNotEmpty()
 	@IsString()
 	GMAIL_SERVICE_ID: string;
+
+	@IsNotEmpty()
+	@IsString()
+	OAUTH2_CLIENT_ID_1: string;
+
+	@IsNotEmpty()
+	@IsString()
+	OAUTH2_CLIENT_SECRET_1: string;
 }

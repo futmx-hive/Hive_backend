@@ -2,14 +2,14 @@ import {
 	BadRequestException,
 	Body,
 	Controller,
-	Param,
 	Post,
 	Req,
 } from "@nestjs/common";
-import { Request } from "express";
 import { successObj } from "src/utils";
 import { OtpVerificationnDTO } from "./dto/passwordless/login";
 import { PasswordlessAuthDTO } from "./dto/passwordless/passwordless.auth.dto";
+import { GoogleSsoDTO } from "./dto/sso/sso.auth.dto";
+import { GoogleAuthService } from "./services/auth.google.service";
 import { AuthService } from "./services/auth.service";
 import { OtpService } from "./services/otp.service";
 import { UserService } from "./services/user.service";
@@ -20,6 +20,7 @@ export class AuthController {
 		private readonly userService: UserService,
 		private readonly otpService: OtpService,
 		private readonly authService: AuthService,
+		private readonly googleAuthService: GoogleAuthService,
 	) {}
 	@Post("passwordless")
 	async createPasswordlessUser(@Body() data: PasswordlessAuthDTO) {
@@ -46,11 +47,7 @@ export class AuthController {
 		await this.userService.updateUserDetails(existingUser, {
 			email_verified: true,
 		});
-		const token = this.authService.SignToken({
-			sub: existingUser._id,
-			email: existingUser.email,
-			nonce: "90000iuixkw",
-		});
+		const token = this.authService.SignToken(existingUser);
 
 		return {
 			...successObj,
@@ -59,7 +56,11 @@ export class AuthController {
 	}
 
 	@Post("sso/redirect/")
-	async createSSOUser(@Body() cat: any, @Req() req: Request) {
-		console.log(cat, req.cookies);
+	async createSSOUser(@Body() data: GoogleSsoDTO) {
+		const token = await this.googleAuthService.authUser(data);
+		return {
+			...successObj,
+			token,
+		};
 	}
 }
