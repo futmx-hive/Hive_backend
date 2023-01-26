@@ -6,15 +6,22 @@ import {
 	UploadedFile,
 	UploadedFiles,
 	HttpCode,
+	Get,
+	Param,
+	ParseUUIDPipe,
+	UseGuards,
 } from "@nestjs/common";
+import { AuthGuard } from "@nestjs/passport";
 import { FileInterceptor, FilesInterceptor } from "@nestjs/platform-express";
 import { ParseDocxPipe } from "src/documents/pipe/parse-docx.pipe";
 import { successObj } from "src/utils";
 import { ProjectDTO } from "./dto/proj.dto";
 import { ProjectService } from "./project.service";
+import { MongoIdPipe } from "src/utils/pipes/parsemongid.pipe";
 const PROJECT_FILE_NAME = "project_file";
 
 @Controller("project")
+@UseGuards(AuthGuard("jwt"))
 export class ProjectController {
 	constructor(private readonly ProjService: ProjectService) {}
 	@Post()
@@ -70,6 +77,15 @@ export class ProjectController {
 		return {
 			data: newProjects,
 			...successObj,
+		};
+	}
+
+	@Get("download/:id")
+	async getProjectDownloadURL(@Param("id", MongoIdPipe) projectId: string) {
+		const URL = await this.ProjService.getProjectFileURL(projectId);
+		return {
+			...successObj,
+			data: URL,
 		};
 	}
 }

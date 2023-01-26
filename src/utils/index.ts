@@ -27,4 +27,13 @@ export class UtilsService {
 		const url = `https://api.dicebear.com/5.x/${style}/svg?seed=${fullname}`;
 		return url;
 	}
+
+	extractExamNumFromEmail(email: string) {
+		const pattern = /\.(m\d{7})@st\.futminna\.edu\.ng$/i;
+		const examNum = pattern.exec(email)[1];
+		if (typeof examNum === "string") {
+			return examNum.toUpperCase();
+		}
+		return examNum;
+	}
 }

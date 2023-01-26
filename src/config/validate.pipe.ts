@@ -7,7 +7,6 @@ export function validateENV(config: Record<string, any>) {
 
 	const res = validateSync(envChunk);
 	if (res.length) {
-		console.log(res);
 		throw new Error(
 			"oopsie! environment variables missing,invalid or incomplete",
 		);

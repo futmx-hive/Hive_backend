@@ -1,8 +1,9 @@
 import { BadRequestException, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { Model, Types } from "mongoose";
+import { FilterQuery, Model, Types } from "mongoose";
 import { DocService } from "src/documents/document.service";
 import { docDetailsSuccess } from "src/documents/types";
+import { FirebaseFilesGuardianService } from "src/firebase/filesguardian.service";
 import { FirebaseService } from "src/firebase/firebase.service";
 import { GithubService } from "src/github/github.service";
 import { TypesenseService } from "src/typesense/typesense.service";
@@ -19,6 +20,7 @@ export class ProjectService implements projectService {
 		private readonly docService: DocService,
 		private readonly GithubService: GithubService,
 		private readonly SearchService: TypesenseService,
+		private readonly fileGuardian: FirebaseFilesGuardianService,
 	) {
 		this.ProjectModel.collection.watch().on("change", async change => {
 			console.log({ change });
@@ -42,6 +44,18 @@ export class ProjectService implements projectService {
 				this.SearchService.unindex(id as Types.ObjectId);
 			}
 		});
+	}
+
+	async getProject(q: FilterQuery<ProjectDoc>) {
+		try {
+			const project = await this.ProjectModel.findOne(q);
+			if (!project) {
+				throw new BadRequestException("failed to get project");
+			}
+			return project;
+		} catch (error) {
+			throw error;
+		}
 	}
 
 	async createProject(
@@ -108,5 +122,11 @@ export class ProjectService implements projectService {
 			cloned_code_repo_url: cloneRepoRes.clone_url,
 		});
 		return newProj;
+	}
+
+	async getProjectFileURL(projectId: string) {
+		const project = await this.getProject({ _id: projectId });
+		const URL = await this.fileGuardian.getSignedFileURL(project);
+		return URL;
 	}
 }

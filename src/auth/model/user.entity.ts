@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Document } from "mongoose";
+import { Document, Types } from "mongoose";
+import { Student } from "src/student/model/student.entity";
 import { connectionTypes, Roles } from "../types/auth_types";
 
 export type UserDoc = UserEntity & Document;
@@ -13,20 +14,15 @@ export type UserDoc = UserEntity & Document;
 		virtuals: true,
 	},
 	timestamps: true,
-	virtuals: {
-		full_name: function (this: UserDoc) {
-			return this.first_name + " " + this.last_name;
-		},
-	},
 })
 export class UserEntity {
-	@Prop({ alias: "firstName" })
+	@Prop()
 	first_name: string;
-	@Prop({ alias: "lastName" })
+	@Prop()
 	last_name: string;
 	@Prop({ default: "" })
 	picture: string;
-	@Prop({ index: true, required: true, trim: true })
+	@Prop({ index: true, required: true, trim: true, unique: true })
 	email: string;
 	@Prop({ index: true, trim: true, default: undefined })
 	occupation?: string;
@@ -42,9 +38,14 @@ export class UserEntity {
 	@Prop({ default: false })
 	phone_verified: boolean;
 	@Prop({ default: Roles.BASIC, required: false })
-	role: number;
-	@Prop({ enum: ["passwordless", "sso-google"], required: true })
+	role: Roles;
+	@Prop({ enum: ["passwordless", "sso-google"], required: true, trim: true })
 	connection_type: connectionTypes;
+	@Prop({ type: Types.ObjectId, ref: "student" })
+	s_id?: Types.ObjectId;
 }
 
 export const UserSchema = SchemaFactory.createForClass(UserEntity);
+UserSchema.virtual("full_name").set(function (this: UserDoc) {
+	return this.first_name + " " + this.last_name;
+});

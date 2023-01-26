@@ -12,6 +12,7 @@ import { GithubService } from "src/github/github.service";
 import { TypesenseService } from "src/typesense/typesense.service";
 import { TypesenseClientService } from "src/typesense/typesenseclient.service";
 import { SearchService } from "src/shared/search/search.service";
+import { FirebaseFilesGuardianService } from "src/firebase/filesguardian.service";
 
 @Module({
 	imports: [
@@ -39,6 +40,7 @@ import { SearchService } from "src/shared/search/search.service";
 		TypesenseService,
 		TypesenseClientService,
 		SearchService,
+		FirebaseFilesGuardianService,
 	],
 	controllers: [ProjectController],
 })

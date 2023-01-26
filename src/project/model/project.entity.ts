@@ -39,6 +39,9 @@ export class Project {
 	@Prop({ ref: "user", type: Types.ObjectId })
 	supervisor: string;
 
+	@Prop({ type: "string", enum: ["undergraduate", "masters", "phd"] })
+	class?: string;
+
 	@Prop({ default: false })
 	isApproved: boolean;
 

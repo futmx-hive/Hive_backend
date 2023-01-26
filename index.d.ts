@@ -1,8 +1,9 @@
 import { Request } from "express";
-import { TokenPayload } from "./src/auth/types/auth_types";
+import { UserDoc, UserEntity } from "src/auth/model/user.entity";
 
 declare global {
-	interface RequestWithTokenPayload extends Request {
-		user: TokenPayload;
+	interface RequestWithUserPayload extends Request {
+		user: UserDoc;
 	}
+	type ValueOf<T> = T[keyof T];
 }

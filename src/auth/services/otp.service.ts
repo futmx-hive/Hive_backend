@@ -25,14 +25,14 @@ export class OtpService {
 	}
 
 	async verifyOTP({ otp, token, email }: OtpVerificationnDTO) {
-		const { OTPHash } = this.srambleEmailAndOTP(email, otp);
+		const { OTPHash, emailHash } = this.srambleEmailAndOTP(email, otp);
 
-		const doc = await this.OTPColl.findOneAndDelete({
-			// grantee: emailHash,
-			code: OTPHash,
-			id: token,
-		});
-		if (doc.grantee) return true;
+		const doc = await this.OTPColl.findById(token);
+		if (!doc) {
+			throw new UnauthorizedException("something went wrong");
+		}
+
+		if (doc.grantee === emailHash && doc.code === OTPHash) return true;
 		throw new UnauthorizedException("something went wrong");
 	}
 	private srambleEmailAndOTP(

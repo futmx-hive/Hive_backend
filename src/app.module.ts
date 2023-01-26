@@ -9,9 +9,16 @@ import { SearchModule } from "./shared/search/search.module";
 import { AuthModule } from "./auth/auth.module";
 import { BookmarkModule } from "./bookmark/bookmark.module";
 import { ProfileModule } from "./profile/profile.module";
+import { StudentModule } from "./student/student.module";
+import { UtilsService } from "./utils";
+import { PoolModule } from "./pool/pool.module";
 
 @Module({
 	imports: [
+		PoolModule,
+
+		StudentModule,
+
 		ProfileModule,
 
 		BookmarkModule,
@@ -28,5 +35,7 @@ import { ProfileModule } from "./profile/profile.module";
 		SearchModule,
 		AuthModule,
 	],
+	providers: [UtilsService],
+	exports: [UtilsService],
 })
 export class AppModule {}

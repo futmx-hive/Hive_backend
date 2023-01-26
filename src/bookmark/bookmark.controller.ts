@@ -27,21 +27,21 @@ export class BookmarkController {
 	@Post("")
 	async createBookmark(
 		@Body() item: BookmarkItemDTO,
-		@Req() req: RequestWithTokenPayload,
+		@Req() req: RequestWithUserPayload,
 	) {
 		return await this.bookmarkService.asyncCreateBookmarkItem(
-			req.user.sub,
+			req.user.id,
 			item,
 		);
 	}
 
 	@Get(":id?")
 	async getUserBookmarks(
-		@Req() req: RequestWithTokenPayload,
+		@Req() req: RequestWithUserPayload,
 		@Param("id") id: string,
 	) {
 		const jotter = await this.bookmarkService.getExistingUserJotter({
-			owner: req.user.sub,
+			owner: req.user.id,
 		});
 		return {
 			...successObj,
@@ -57,10 +57,10 @@ export class BookmarkController {
 	@Delete(":id")
 	async deleteBookmarkItem(
 		@Param("id") itemId: Types.ObjectId,
-		@Req() req: RequestWithTokenPayload,
+		@Req() req: RequestWithUserPayload,
 	) {
 		const jotter = await this.bookmarkService.getExistingUserJotter({
-			id: req.user.sub,
+			id: req.user.id,
 		});
 		if (!jotter) throw new BadRequestException("not found");
 		console.log({ jotter });

@@ -17,7 +17,9 @@ async function bootstrap() {
 	app.setGlobalPrefix("/api/v1/");
 	app.use(helmet());
 	app.use(cookieParser());
-	app.useGlobalPipes(new ValidationPipe());
+	app.useGlobalPipes(
+		new ValidationPipe({ skipMissingProperties: true, whitelist: true }),
+	);
 	app.useGlobalFilters(new HttpExceptionFilter());
 
 	await app.listen(port);

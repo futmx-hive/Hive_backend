@@ -1,18 +1,13 @@
-import {
-	BadRequestException,
-	Body,
-	Controller,
-	Post,
-	Req,
-} from "@nestjs/common";
+import { BadRequestException, Body, Controller, Post } from "@nestjs/common";
+import { StudentService } from "src/student/student.service";
 import { successObj } from "src/utils";
-import { OtpVerificationnDTO } from "./dto/passwordless/login";
-import { PasswordlessAuthDTO } from "./dto/passwordless/passwordless.auth.dto";
-import { GoogleSsoDTO } from "./dto/sso/sso.auth.dto";
-import { GoogleAuthService } from "./services/auth.google.service";
-import { AuthService } from "./services/auth.service";
-import { OtpService } from "./services/otp.service";
-import { UserService } from "./services/user.service";
+import { OtpVerificationnDTO } from "../dto/passwordless/login";
+import { PasswordlessAuthDTO } from "../dto/passwordless/passwordless.auth.dto";
+import { GoogleSsoDTO } from "../dto/sso/sso.auth.dto";
+import { GoogleAuthService } from "../services/auth.google.service";
+import { AuthService } from "../services/auth.service";
+import { OtpService } from "../services/otp.service";
+import { UserService } from "../services/user.service";
 
 @Controller("auth")
 export class AuthController {
@@ -21,6 +16,7 @@ export class AuthController {
 		private readonly otpService: OtpService,
 		private readonly authService: AuthService,
 		private readonly googleAuthService: GoogleAuthService,
+		private readonly studentService: StudentService,
 	) {}
 	@Post("passwordless")
 	async createPasswordlessUser(@Body() data: PasswordlessAuthDTO) {
@@ -44,9 +40,13 @@ export class AuthController {
 			data.email,
 			false,
 		);
-		await this.userService.updateUserDetails(existingUser, {
-			email_verified: true,
-		});
+
+		await this.studentService.createProjectStudent(existingUser, {
+			owner: existingUser.id,
+		}),
+			await this.userService.updateUserDetails(existingUser, {
+				email_verified: true,
+			});
 		const token = this.authService.SignToken(existingUser);
 
 		return {

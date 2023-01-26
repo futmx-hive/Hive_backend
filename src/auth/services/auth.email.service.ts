@@ -33,7 +33,6 @@ export class EmailAuthService {
 
 			return true;
 		} catch (error) {
-			console.log(error);
 			throw new InternalServerErrorException(
 				"error occured please try again",
 			);
