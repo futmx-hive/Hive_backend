@@ -12,9 +12,12 @@ import { ProfileModule } from "./profile/profile.module";
 import { StudentModule } from "./student/student.module";
 import { UtilsService } from "./utils";
 import { PoolModule } from "./pool/pool.module";
+// import { MessageModule } from './message/message.module';
 
 @Module({
 	imports: [
+		// MessageModule,
+
 		PoolModule,
 
 		StudentModule,

@@ -1,7 +1,8 @@
-import { application_type, project_category } from "../types/proj_types";
+import { project_category } from "../types/proj_types";
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document, Types } from "mongoose";
 export type ProjectDoc = Project & Document;
+export const degreeTypes = ["undergraduate", "masters", "phd"] as const;
 
 @Schema({
 	toJSON: {
@@ -39,7 +40,7 @@ export class Project {
 	@Prop({ ref: "user", type: Types.ObjectId })
 	supervisor: string;
 
-	@Prop({ type: "string", enum: ["undergraduate", "masters", "phd"] })
+	@Prop({ type: "string", enum: degreeTypes })
 	class?: string;
 
 	@Prop({ default: false })

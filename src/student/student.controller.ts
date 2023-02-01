@@ -14,7 +14,12 @@ export class StudentController {
 		@Req() req: RequestWithUserPayload,
 	) {
 		const updatedStudentDetails =
-			this.studentService.updateProjectStudentDetails(req.user.id, data);
+			this.studentService.updateProjectStudentDetails(
+				{
+					owner: req.user.id,
+				},
+				data,
+			);
 
 		return {
 			...successObj,

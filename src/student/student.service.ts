@@ -4,8 +4,9 @@ import {
 	InternalServerErrorException,
 } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { FilterQuery, Model, Types } from "mongoose";
+import { FilterQuery, InsertManyResult, Model, Types } from "mongoose";
 import { UserDoc } from "src/auth/model/user.entity";
+import { studentPoolObj } from "src/pool/types";
 import { UtilsService } from "src/utils";
 import { studentDTO } from "./dto/student.dto";
 import { Student, StudentDoc } from "./model/student.entity";
@@ -48,13 +49,56 @@ export class StudentService {
 		}
 	}
 	async updateProjectStudentDetails(
-		uid: Types.ObjectId | string,
+		query: FilterQuery<StudentDoc>,
 		update: studentDTO,
 	) {
 		try {
-			return this.students.findOneAndUpdate({ owner: uid }, update);
+			return this.students.findOneAndUpdate(query, update);
 		} catch (error) {
 			throw new BadRequestException("failded while updating user info");
+		}
+	}
+
+	async createManyStudents(students: studentPoolObj[]) {
+		type studentPoolWithId = Partial<studentPoolObj> & {
+			id?: Types.ObjectId;
+		};
+
+		const studentsMap = new Map<string, studentPoolWithId>();
+		students.map(e => studentsMap.set(e.exam_num, e));
+		const toBeUpdated: studentPoolWithId[] = [];
+		let toBeCreated: studentPoolWithId[] = [];
+		try {
+			const existent = await this.students.find({
+				exam_num: { $in: [students.map(e => e.exam_num)] },
+			});
+			if (existent)
+				existent.map(e =>
+					studentsMap.has(e.exam_num)
+						? toBeUpdated.push({
+								exam_num: studentsMap.get(e.exam_num).exam_num,
+								matric_no: studentsMap.get(e.exam_num)
+									.matric_no,
+								id: e._id,
+						  })
+						: toBeCreated.push(studentsMap.get(e.exam_num)),
+				);
+			const insertManyRes = (await this.students.insertMany(
+				toBeCreated.map(e => ({
+					matric_no: e.matric_no,
+					exam_no: e.exam_num,
+				})),
+			)) as unknown as InsertManyResult<Student>;
+
+			toBeCreated = toBeCreated.map((e, i) => ({
+				...e,
+				id: insertManyRes.insertedIds[i],
+			}));
+
+			return [...toBeCreated, ...toBeUpdated];
+		} catch (error) {
+			console.log("error");
+			throw new InternalServerErrorException();
 		}
 	}
 }

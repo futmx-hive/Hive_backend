@@ -12,7 +12,7 @@ import {
 	MinLength,
 } from "class-validator";
 import { Roles } from "src/auth/types/auth_types";
-const trim = (params: TransformFnParams) => params.value.trim();
+export const trim = (params: TransformFnParams) => params.value.trim();
 
 export class userUpdateDTO {
 	@IsOptional()

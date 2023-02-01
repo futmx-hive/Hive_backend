@@ -30,9 +30,9 @@ export class UtilsService {
 
 	extractExamNumFromEmail(email: string) {
 		const pattern = /\.(m\d{7})@st\.futminna\.edu\.ng$/i;
-		const examNum = pattern.exec(email)[1];
-		if (typeof examNum === "string") {
-			return examNum.toUpperCase();
+		const examNum = pattern.exec(email);
+		if (Array.isArray(examNum)) {
+			return examNum[1].toUpperCase();
 		}
 		return examNum;
 	}
