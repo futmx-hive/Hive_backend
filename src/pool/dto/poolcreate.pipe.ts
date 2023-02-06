@@ -14,7 +14,7 @@ export const createPoolSchema = Joi.object({
 		.regex(/undergraduate|masters|phd/i)
 		.trim()
 		.required(),
-	description: Joi.string().trim(),
+	description: Joi.string().trim().required(),
 	assignees: Joi.array()
 		.has(
 			Joi.object({
@@ -30,9 +30,9 @@ export const createPoolSchema = Joi.object({
 							last_name: Joi.string().trim().required().trim(),
 							matric_no: Joi.string()
 								.trim()
+								.regex(/^\d{4}\/\d{1}\/\d{5}[A-Z]{2}$/i)
 								.required()
-								.trim()
-								.regex(/^\d{4}\/\d{1}\/\d{5}[A-Z]{2}$/),
+								.trim(),
 						}),
 					)
 					.min(1)
@@ -49,6 +49,7 @@ export class PoolDTOPipe implements PipeTransform {
 	transform(value: any, metadata: ArgumentMetadata) {
 		const { error } = this.schema.validate(value);
 		if (error) {
+			console.log(error.details[0].context);
 			throw new BadRequestException(error.message);
 		}
 		return value;

@@ -15,7 +15,7 @@ export class EmailAuthService {
 	) {}
 	async sendOTPtoEmail(OTP: string, email: string): Promise<boolean | never> {
 		try {
-			// return true;
+			return true;
 			await axios.post("https://api.emailjs.com/api/v1.0/email/send", {
 				service_id: this.configService.getOrThrow("GMAIL_SERVICE_ID"),
 				template_id: EMAIL_TEMPLATE_NAMES.OTP_TEMPLATE,

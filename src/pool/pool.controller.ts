@@ -7,6 +7,7 @@ import {
 	UseGuards,
 	Body,
 	UsePipes,
+	Req,
 } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 import { RolesSetter } from "src/auth/decorators/role.decorator";
@@ -28,7 +29,10 @@ export class PoolController {
 	}
 	@Post("")
 	@UsePipes(new PoolDTOPipe(createPoolSchema))
-	async createPool(@Body() payload: pool) {
-		return payload;
+	async createPool(
+		@Body() payload: pool,
+		@Req() req: RequestWithUserPayload,
+	) {
+		return this.service.createPool(req.user, payload);
 	}
 }

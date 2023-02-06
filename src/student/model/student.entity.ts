@@ -43,6 +43,8 @@ export class Student {
 	projects?: Array<Types.ObjectId>;
 	@Prop({ type: Types.ObjectId, ref: UserEntity.name, required: true })
 	owner: Types.ObjectId;
+	@Prop({ type: String })
+	temp_name?: string;
 }
 
 export const StudentSchema = SchemaFactory.createForClass(Student);

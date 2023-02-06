@@ -2,8 +2,10 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document, Types } from "mongoose";
 import { UserEntity } from "src/auth/model/user.entity";
 import { degreeTypes } from "src/project/model/project.entity";
-import { Student } from "src/student/model/student.entity";
 import { degreeType } from "../types";
+import { PoolAssignee, PoolAssigneeSchema } from "./pool.assignee";
+import { PoolStudent, PoolStudentSchema } from "./pool.student";
+import { studentSubmissions } from "./student.submissions";
 export type PoolDoc = Pool & Document;
 
 @Schema({
@@ -19,16 +21,22 @@ export class Pool {
 	locked: boolean;
 
 	@Prop({
-		type: [{ type: Types.ObjectId, ref: "assignees" }],
+		type: [PoolAssigneeSchema],
 		required: true,
 	})
-	assignees: Array<Types.ObjectId>;
+	assignees: Array<PoolAssignee>;
 
 	@Prop({
-		type: [{ type: Types.ObjectId, ref: Student.name }],
+		type: [PoolStudentSchema],
 		required: true,
 	})
-	students: Array<Types.ObjectId>;
+	students: Array<PoolStudent>;
+
+	@Prop({
+		type: [{ type: Types.ObjectId, ref: studentSubmissions.name }],
+		default: [],
+	})
+	studentSubmissions: Array<Types.ObjectId>;
 
 	@Prop({ type: String, enum: degreeTypes })
 	students_type: degreeType;
@@ -44,3 +52,10 @@ export class Pool {
 }
 
 export const PoolSchema = SchemaFactory.createForClass(Pool);
+
+PoolSchema.virtual("number_of_supervisors").set(function (this: PoolDoc) {
+	return this.assignees.length;
+});
+PoolSchema.virtual("number_of_students").set(function (this: PoolDoc) {
+	return this.students.length;
+});
