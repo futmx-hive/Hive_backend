@@ -104,7 +104,6 @@ export class PoolService {
 					path: "student",
 					model: Student.name,
 				},
-				select: "student.matric_no student.exam_no student.temp_name student.owner",
 			})
 			.populate({
 				path: "assignees",
@@ -112,7 +111,6 @@ export class PoolService {
 					path: "supervisor_id",
 					model: UserEntity.name,
 				},
-				select: "-createdAt -updatedAt connection_type",
 			})
 			.exec();
 
@@ -136,5 +134,25 @@ export class PoolService {
 		} catch (error) {
 			throw error;
 		}
+	}
+
+	async getAllPools() {
+		return await this.poolService
+			.find()
+			.populate({
+				path: "students",
+				populate: {
+					path: "student",
+					model: Student.name,
+				},
+			})
+			.populate({
+				path: "assignees",
+				populate: {
+					path: "supervisor_id",
+					model: UserEntity.name,
+				},
+			})
+			.exec();
 	}
 }

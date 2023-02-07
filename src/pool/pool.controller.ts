@@ -56,9 +56,23 @@ export class PoolController {
 			data: poolData,
 		};
 	}
+
+	@Get("")
+	async getPools() {
+		const poolData = await this.service.getAllPools();
+
+		return {
+			...successObj,
+			data: poolData,
+		};
+	}
 	@Get("student/submissions")
-	async getStudentProjectHistory(@Body() data: StudentPoolDataDTO) {}
+	async getStudentProjectHistory(@Body() data: StudentPoolDataDTO) {
+		return data;
+	}
 
 	@Post("student/submissions")
-	async makeSubmission(@Body() data: SubmissionDTO) {}
+	async makeSubmission(@Body() data: SubmissionDTO) {
+		return;
+	}
 }

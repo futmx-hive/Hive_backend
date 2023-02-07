@@ -4,7 +4,9 @@ import {
 	IsNumber,
 	IsArray,
 	ValidateNested,
+	IsMongoId,
 } from "class-validator";
+import { Types } from "mongoose";
 import { submissionType } from "../model/submissions.entity";
 
 export class SubmissionDTO {
@@ -19,4 +21,8 @@ export class SubmissionDTO {
 	@IsArray()
 	@ValidateNested({ each: true })
 	links: string[];
+
+	@IsNotEmpty()
+	@IsMongoId()
+	assignee: Types.ObjectId;
 }
