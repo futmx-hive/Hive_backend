@@ -6,6 +6,7 @@ import { AppModule } from "./app.module";
 import { HttpExceptionFilter } from "./shared/errors/global.filter";
 import * as cookieParser from "cookie-parser";
 // glpat-JvHxnQFn2GrnVdgP-JD3
+import * as cors from "cors";
 
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule);
@@ -15,6 +16,7 @@ async function bootstrap() {
 
 	const port = app.get(ConfigService).get<number>("PORT");
 	app.setGlobalPrefix("/api/v1/");
+	app.use(cors());
 	app.use(helmet());
 	app.use(cookieParser());
 	app.useGlobalPipes(

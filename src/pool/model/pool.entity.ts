@@ -53,9 +53,9 @@ export class Pool {
 
 export const PoolSchema = SchemaFactory.createForClass(Pool);
 
-PoolSchema.virtual("number_of_supervisors").set(function (this: PoolDoc) {
+PoolSchema.virtual("number_of_supervisors").get(function (this: PoolDoc) {
 	return this.assignees.length;
 });
-PoolSchema.virtual("number_of_students").set(function (this: PoolDoc) {
+PoolSchema.virtual("number_of_students").get(function (this: PoolDoc) {
 	return this.students.length;
 });

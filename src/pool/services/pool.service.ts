@@ -1,8 +1,14 @@
-import { Injectable, InternalServerErrorException } from "@nestjs/common";
+import {
+	Injectable,
+	InternalServerErrorException,
+	NotFoundException,
+} from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { Model, Types } from "mongoose";
-import { UserDoc } from "src/auth/model/user.entity";
+import { FilterQuery, Model, Types } from "mongoose";
+import { UserDoc, UserEntity } from "src/auth/model/user.entity";
+import { Student } from "src/student/model/student.entity";
 import { StudentService } from "src/student/student.service";
+import { StudentPoolDataDTO } from "../dto/studen.supervisor.dto";
 import { PoolAssignee } from "../model/pool.assignee";
 import { Pool, PoolDoc } from "../model/pool.entity";
 import { PoolStudent } from "../model/pool.student";
@@ -82,6 +88,53 @@ export class PoolService {
 			throw new InternalServerErrorException(
 				"error creating pool please try again",
 			);
+		}
+	}
+
+	async filterPool(q: FilterQuery<PoolDoc>) {
+		return await this.poolService.findOne(q);
+	}
+
+	async getOnePool(id: Types.ObjectId) {
+		const pool = await this.poolService
+			.findById(id)
+			.populate({
+				path: "students",
+				populate: {
+					path: "student",
+					model: Student.name,
+				},
+				select: "student.matric_no student.exam_no student.temp_name student.owner",
+			})
+			.populate({
+				path: "assignees",
+				populate: {
+					path: "supervisor_id",
+					model: UserEntity.name,
+				},
+				select: "-createdAt -updatedAt connection_type",
+			})
+			.exec();
+
+		return pool;
+	}
+
+	async getStudentProjectHistory(data: StudentPoolDataDTO) {
+		try {
+			const pool = await this.filterPool({
+				year: data.pool_year,
+				students_type: data.student_type,
+			});
+			const poolStudent = pool.students.find(
+				student => student.student === data.student,
+			);
+			if (!poolStudent)
+				throw new NotFoundException(
+					"student may not belong to this pool",
+				);
+			const { assignee } = poolStudent;
+		} catch (error) {
+			throw error;
 		}
 	}
 }

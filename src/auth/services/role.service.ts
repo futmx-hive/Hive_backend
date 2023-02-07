@@ -53,15 +53,18 @@ export class BasicRoleService {
 	}
 	async getUsersWithRole(role: Roles) {
 		const key = this.resolveRoleKey(role);
-		const users = await this.basicRoles
-			.findOne()
-			.populate(
-				key,
-				"-createdAt -updatedAt -connection_type -last_name -first_name",
-			)
-			.select(key)
-			.exec();
-		return users;
+		console.log({ key });
+		try {
+			const users = await this.basicRoles
+				.findOne()
+				.populate(key, "-createdAt -updatedAt -connection_type")
+				.select(key)
+				.exec();
+			return users;
+		} catch (error) {
+			console.log(error);
+			throw new InternalServerErrorException("an error occured");
+		}
 	}
 	private resolveRoleKey(role: Roles) {
 		type accessiblesMap = {

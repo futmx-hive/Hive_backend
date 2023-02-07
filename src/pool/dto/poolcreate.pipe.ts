@@ -49,7 +49,6 @@ export class PoolDTOPipe implements PipeTransform {
 	transform(value: any, metadata: ArgumentMetadata) {
 		const { error } = this.schema.validate(value);
 		if (error) {
-			console.log(error.details[0].context);
 			throw new BadRequestException(error.message);
 		}
 		return value;
