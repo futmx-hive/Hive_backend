@@ -18,6 +18,8 @@ import { successObj } from "src/utils";
 import { MongoIdPipe } from "src/utils/pipes/parsemongid.pipe";
 import { PoolDTO, SupervisorStudentsDTO } from "./dto/poolcreate.dto";
 import { createPoolSchema, PoolDTOPipe } from "./dto/poolcreate.pipe";
+import { StudentPoolDataDTO } from "./dto/studen.supervisor.dto";
+import { SubmissionDTO } from "./dto/submission.dto";
 import { PoolService } from "./services/pool.service";
 import { pool } from "./types";
 
@@ -54,6 +56,9 @@ export class PoolController {
 			data: poolData,
 		};
 	}
-	@Get()
-	async listpools() {}
+	@Get("student/submissions")
+	async getStudentProjectHistory(@Body() data: StudentPoolDataDTO) {}
+
+	@Post("student/submissions")
+	async makeSubmission(@Body() data: SubmissionDTO) {}
 }

@@ -15,7 +15,7 @@ export class TypesenseClientService {
 					port: this.configService.getOrThrow<number>(
 						"TYPESENSE_DEV_PORT",
 					), // For Typesense Cloud use 443
-					protocol: "http", // For Typesense Cloud use https
+					protocol: "https", // For Typesense Cloud use https
 				},
 			],
 			apiKey: this.configService.getOrThrow<string>(
