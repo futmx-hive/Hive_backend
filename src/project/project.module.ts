@@ -14,6 +14,9 @@ import { TypesenseClientService } from "src/typesense/typesenseclient.service";
 import { SearchService } from "src/shared/search/search.service";
 import { FirebaseFilesGuardianService } from "src/firebase/filesguardian.service";
 
+import { LeapImageGenerator } from "src/image-generators/lisp/services/leap-image-generator.service";
+import { LeapClient } from "src/image-generators/lisp/leap-client";
+
 @Module({
 	imports: [
 		MongooseModule.forFeature([
@@ -41,6 +44,8 @@ import { FirebaseFilesGuardianService } from "src/firebase/filesguardian.service
 		TypesenseClientService,
 		SearchService,
 		FirebaseFilesGuardianService,
+		LeapClient,
+		LeapImageGenerator,
 	],
 	controllers: [ProjectController],
 })

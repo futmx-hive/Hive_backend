@@ -18,7 +18,8 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "strict":true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "allowJs": true
   
   }
 }

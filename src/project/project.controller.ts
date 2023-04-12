@@ -54,7 +54,7 @@ export class ProjectController {
 				}
 			},
 			limits: {
-				fileSize: 6000000,
+				fileSize: 100000000,
 			},
 		}),
 	)
@@ -86,6 +86,14 @@ export class ProjectController {
 		return {
 			...successObj,
 			data: URL,
+		};
+	}
+
+	@Get("ewee")
+	async genImage() {
+		await this.ProjService.generateProjectImage();
+		return {
+			data: "ok",
 		};
 	}
 }

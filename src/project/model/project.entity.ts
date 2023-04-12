@@ -35,6 +35,9 @@ export class Project {
 	source_writeup: string;
 
 	@Prop({ default: "" })
+	topic_img_url?: string;
+
+	@Prop({ default: "" })
 	cloned_code_repo_url: string;
 
 	@Prop({ ref: "user", type: Types.ObjectId })

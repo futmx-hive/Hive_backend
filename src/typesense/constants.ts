@@ -11,7 +11,7 @@ export const TypesenseCollectionNames: {
 		schema: {
 			fields: [
 				{
-					facet: false,
+					facet: true,
 					index: true,
 					name: "application_type",
 					optional: true,
@@ -46,14 +46,14 @@ export const TypesenseCollectionNames: {
 					type: "string",
 				},
 				{
-					facet: false,
+					facet: true,
 					index: true,
 					name: "isApproved",
 					optional: true,
 					type: "bool",
 				},
 				{
-					facet: false,
+					facet: true,
 					index: true,
 					name: "month",
 					optional: true,
@@ -95,7 +95,7 @@ export const TypesenseCollectionNames: {
 					type: "string",
 				},
 				{
-					facet: false,
+					facet: true,
 					index: true,
 					name: "year",
 					optional: true,

@@ -36,7 +36,7 @@ export class Pool {
 		type: [{ type: Types.ObjectId, ref: studentSubmissions.name }],
 		default: [],
 	})
-	studentSubmissions: Array<Types.ObjectId>;
+	student_submissions: Array<Types.ObjectId>;
 
 	@Prop({ type: String, enum: degreeTypes })
 	students_type: degreeType;

@@ -3,13 +3,15 @@ import { InjectModel } from "@nestjs/mongoose";
 import { FilterQuery, Model, Types } from "mongoose";
 import { DocService } from "src/documents/document.service";
 import { docDetailsSuccess } from "src/documents/types";
+import { ImageGenerator } from "src/image-generators/dream-studio/services/image-generator.service";
 import { FirebaseFilesGuardianService } from "src/firebase/filesguardian.service";
 import { FirebaseService } from "src/firebase/firebase.service";
 import { GithubService } from "src/github/github.service";
 import { TypesenseService } from "src/typesense/typesense.service";
 import { ProjectDTO } from "./dto/proj.dto";
 import { Project, ProjectDoc } from "./model/project.entity";
-import { projectService } from "./types/proj_types";
+import { createProjectObject, projectService } from "./types/proj_types";
+import { LeapImageGenerator } from "src/image-generators/lisp/services/leap-image-generator.service";
 
 @Injectable()
 export class ProjectService implements projectService {
@@ -21,6 +23,7 @@ export class ProjectService implements projectService {
 		private readonly GithubService: GithubService,
 		private readonly SearchService: TypesenseService,
 		private readonly fileGuardian: FirebaseFilesGuardianService,
+		private readonly imageGen: LeapImageGenerator,
 	) {
 		this.ProjectModel.collection.watch().on("change", async change => {
 			console.log({ change });
@@ -60,10 +63,7 @@ export class ProjectService implements projectService {
 
 	async createProject(
 		project: ProjectDTO,
-		docData: docDetailsSuccess & {
-			source_writeup: string;
-			cloned_code_repo_url?: string;
-		},
+		docData: createProjectObject & Pick<ProjectDoc, "topic_img_url">,
 	) {
 		const newDoc = await this.ProjectModel.create({
 			title: docData.title,
@@ -78,6 +78,7 @@ export class ProjectService implements projectService {
 			supervisor: "623d832f436dfd41909fb8ae",
 			year: docData.year,
 			month: docData.month,
+			topic_img_url: docData.topic_img_url,
 		});
 		return newDoc;
 	}
@@ -104,22 +105,32 @@ export class ProjectService implements projectService {
 			markup,
 			{ ...rest, ...project },
 		);
-		const { repoName: oldRepoName } =
-			this.GithubService.extractRepoOwnerDetails(project.source);
-		const newRepoName = this.GithubService.generateRepoName(
-			{ projectDetails: project, docDetails },
-			oldRepoName,
-		);
-		const cloneRepoRes = await this.GithubService.cloneRepo(
-			project.source,
-			newRepoName,
-		);
-		// console.log({ cloneRepoRes });
 
-		const newProj = await this.createProject(project, {
+		let newProject: createProjectObject = {
 			...docDetails,
 			source_writeup: fileUploadRes.id,
-			cloned_code_repo_url: cloneRepoRes.clone_url,
+		};
+		if (project.source) {
+			const { repoName: oldRepoName } =
+				this.GithubService.extractRepoOwnerDetails(project.source);
+			const newRepoName = this.GithubService.generateRepoName(
+				{ projectDetails: project, docDetails },
+				oldRepoName,
+			);
+			const cloneRepoRes = await this.GithubService.cloneRepo(
+				project.source,
+				newRepoName,
+			);
+			newProject = {
+				...newProject,
+				cloned_code_repo_url: cloneRepoRes.clone_url,
+			};
+		}
+		const url = await this.generateProjectImage(docDetails.title);
+
+		const newProj = await this.createProject(project, {
+			...newProject,
+			topic_img_url: url || "",
 		});
 		return newProj;
 	}
@@ -128,5 +139,9 @@ export class ProjectService implements projectService {
 		const project = await this.getProject({ _id: projectId });
 		const URL = await this.fileGuardian.getSignedFileURL(project);
 		return URL;
+	}
+
+	async generateProjectImage(prompt: string) {
+		return this.imageGen.generateImage(prompt);
 	}
 }

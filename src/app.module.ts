@@ -17,6 +17,14 @@ import { PoolModule } from "./pool/pool.module";
 @Module({
 	imports: [
 		// MessageModule,
+		ConfigModule.forRoot({
+			isGlobal: true,
+			validate: validateENV,
+			load: [databaseConfig],
+		}),
+		MongooseModule.forRootAsync({
+			useClass: DatabaseProvider,
+		}),
 
 		PoolModule,
 
@@ -26,17 +34,9 @@ import { PoolModule } from "./pool/pool.module";
 
 		BookmarkModule,
 
-		ConfigModule.forRoot({
-			isGlobal: true,
-			validate: validateENV,
-			load: [databaseConfig],
-		}),
-		MongooseModule.forRootAsync({
-			useClass: DatabaseProvider,
-		}),
 		ProjectModule,
 		SearchModule,
-		AuthModule,
+		// AuthModule,
 	],
 	providers: [UtilsService],
 	exports: [UtilsService],

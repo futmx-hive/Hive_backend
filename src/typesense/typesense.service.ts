@@ -34,7 +34,7 @@ export class TypesenseService {
 				.upsert({ ...rest, id: _id });
 			console.log("indexed");
 		} catch (error) {
-			console.log(error);
+			// console.log(error);
 			fs.appendFileSync(
 				"./failed.log",
 				JSON.stringify({

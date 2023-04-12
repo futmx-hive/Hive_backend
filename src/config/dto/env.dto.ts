@@ -21,6 +21,14 @@ export class EnvVarDTO {
 
 	@IsNotEmpty()
 	@IsString()
+	TYPESENSE_PROD_ADMIN_KEY: string;
+
+	@IsNotEmpty()
+	@IsNumberString()
+	TYPESENSE_PROD_PORT: string;
+
+	@IsNotEmpty()
+	@IsString()
 	TYPESENSE_DEV_HOST: string;
 
 	@IsNotEmpty()
@@ -54,4 +62,12 @@ export class EnvVarDTO {
 	@IsNotEmpty()
 	@IsString()
 	OAUTH2_CLIENT_SECRET_1: string;
+
+	@IsNotEmpty()
+	@IsString()
+	DREAM_STUDIO_API_KEY: string;
+
+	@IsNotEmpty()
+	@IsString()
+	LISP_API_KEY: string;
 }

@@ -30,8 +30,10 @@ export class DefaultExtractor implements ExtractorTemplate {
 			const Node2 = Node1.nextElementSibling;
 			const name = Node1.textContent.toLowerCase();
 			const matric_no = Node2.textContent.toLowerCase();
+
 			// since they can be swapped
 			// console.log({ matric_no, name });
+
 			if (/\d/.test(name)) {
 				data.owner.matric_no = name;
 				data.owner.name = matric_no;

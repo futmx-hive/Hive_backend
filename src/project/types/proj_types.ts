@@ -11,3 +11,8 @@ export interface projectService {
 		docData: docDetailsSuccess,
 	): Promise<ProjectDoc | never>;
 }
+
+export type createProjectObject = docDetailsSuccess & {
+	source_writeup: string;
+	cloned_code_repo_url?: string;
+};

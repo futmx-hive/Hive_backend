@@ -1,4 +1,5 @@
 import {
+	BadRequestException,
 	Injectable,
 	InternalServerErrorException,
 	NotFoundException,
@@ -12,9 +13,10 @@ import { StudentPoolDataDTO } from "../dto/studen.supervisor.dto";
 import { PoolAssignee } from "../model/pool.assignee";
 import { Pool, PoolDoc } from "../model/pool.entity";
 import { PoolStudent } from "../model/pool.student";
-import { Submission } from "../model/submissions.entity";
+import { studentSubmissionsDoc } from "../model/student.submissions";
 import { pool } from "../types";
 import { AssigneeService } from "./assignee.service";
+import { studentSubmissionService } from "./student.submission.service";
 
 @Injectable()
 export class PoolService {
@@ -22,10 +24,21 @@ export class PoolService {
 		private readonly studentService: StudentService,
 		@InjectModel(Pool.name) private readonly poolService: Model<PoolDoc>,
 		private readonly assigneeService: AssigneeService,
+		private readonly studentSubmissionService: studentSubmissionService,
 	) {}
 
 	async createPool(user: UserDoc, pool: pool) {
 		const poolId = new Types.ObjectId()._id;
+		if (
+			await this.filterPool({
+				year: pool.year,
+				students_type: pool.students_type,
+			})
+		) {
+			throw new BadRequestException(
+				"you cant create this pool at this time",
+			);
+		}
 		try {
 			const SupervisorsAndStudents = await Promise.all(
 				pool.assignees.map(async ({ students, supervisor_id }) => {
@@ -53,7 +66,22 @@ export class PoolService {
 					return Promise.resolve(assignee);
 				}),
 			);
-
+			const poolStuds = await Promise.all(
+				asssignees.map(async ass => {
+					const studentSubmissions: studentSubmissionsDoc[] =
+						await this.studentSubmissionService.createManyStudentSubmission(
+							ass.students,
+							poolId,
+						);
+					return Promise.resolve(
+						studentSubmissions.map(s => ({
+							student: s.student,
+							assignee: ass._id,
+							student_submission: s._id,
+						})) as PoolStudent[],
+					);
+				}),
+			);
 			const poolAsssignees: Array<PoolAssignee> = asssignees.map(
 				assignee => ({
 					assignee: assignee._id,
@@ -61,14 +89,13 @@ export class PoolService {
 				}),
 			);
 
-			const poolStudents: Array<PoolStudent> = [];
+			const poolStudents: Array<PoolStudent> = poolStuds.flat();
 
 			for (const ass of asssignees) {
 				const students = ass.students.map(stud => ({
 					student: stud._id,
 					assignee: ass._id as Types.ObjectId,
 				}));
-				poolStudents.push(...students);
 			}
 
 			const poolCreateRes = await this.poolService.create({
@@ -84,7 +111,7 @@ export class PoolService {
 
 			return poolCreateRes.toJSON();
 		} catch (error) {
-			console.log(error);
+			// console.log(error);
 			throw new InternalServerErrorException(
 				"error creating pool please try again",
 			);

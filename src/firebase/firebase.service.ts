@@ -16,11 +16,10 @@ export class FirebaseService {
 	) {
 		const storage = getStorage(this.app);
 		const id: string = uuidv4();
-		console.log({
-			id: `projects/${projectDetails.year}/${projectDetails.category}/${id}`,
-		});
+
 		let isSuccess = false;
-		const filePath: string = path.join(__dirname, id + ".html");
+		const filePath: string = id + ".html";
+		// path.join(__dirname,
 		try {
 			fs.writeFileSync(filePath, markup, {
 				encoding: "utf-8",

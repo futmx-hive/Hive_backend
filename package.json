@@ -21,6 +21,9 @@
 		"test:e2e": "jest --config ./test/jest-e2e.json"
 	},
 	"dependencies": {
+		"@improbable-eng/grpc-web": "^0.15.0",
+		"@improbable-eng/grpc-web-node-http-transport": "^0.15.0",
+		"@leap-ai/sdk": "^0.0.119",
 		"@nestjs/common": "^9.0.0",
 		"@nestjs/config": "^2.2.0",
 		"@nestjs/core": "^9.0.0",
@@ -39,6 +42,7 @@
 		"cors": "^2.8.5",
 		"firebase-admin": "^11.3.0",
 		"google-auth-library": "^8.7.0",
+		"google-protobuf": "^3.21.2",
 		"helmet": "^6.0.0",
 		"i": "^0.3.7",
 		"joi": "^17.7.0",
@@ -46,6 +50,7 @@
 		"mammoth": "^1.5.1",
 		"mongoose": "^6.7.4",
 		"mongoose-autopopulate": "^0.17.1",
+		"n": "^9.0.1",
 		"nestjs-octokit": "^0.2.0",
 		"node-html-parser": "^6.1.4",
 		"nodemailer": "^6.9.0",

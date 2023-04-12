@@ -14,19 +14,19 @@ export type studentSubmissionsDoc = studentSubmissions & Document;
 	},
 })
 export class studentSubmissions {
-	@Prop({ type: Types.ObjectId, ref: Student.name })
+	@Prop({ type: Types.ObjectId, ref: Student.name, unique: true })
 	student: Types.ObjectId;
 
-	@Prop({ type: Types.ObjectId, ref: "pool" })
+	@Prop({ type: Types.ObjectId, ref: "pool", unique: true })
 	pool: Types.ObjectId;
 
-	@Prop({
-		type: [{ type: Types.ObjectId, ref: Student.name }],
-		required: true,
-	})
-	supervisor_id: Array<Types.ObjectId>;
+	// @Prop({
+	// 	type: [{ type: Types.ObjectId, ref: Student.name }],
+	// 	required: true,
+	// })
+	// supervisor_id: Array<Types.ObjectId>;
 
-	@Prop({ type: Types.ObjectId, ref: Submission.name })
+	@Prop({ type: Types.ObjectId, ref: Submission.name, default: [] })
 	submissions?: Array<Types.ObjectId>;
 }
 

@@ -1,6 +1,8 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document, Mongoose, Types, Schema as SchemaClass } from "mongoose";
+import { UserEntity } from "src/auth/model/user.entity";
 import { Student } from "src/student/model/student.entity";
+import { Pool } from "./pool.entity";
 export type RolesDoc = Submission & Document;
 export type LinkDoc = Link & Document;
 
@@ -29,7 +31,7 @@ class Link {
 	title: string;
 
 	@Prop({ type: String })
-	url: string;
+	url?: string;
 
 	@Prop({ type: Types.ObjectId })
 	_id?: Types.ObjectId;
@@ -39,6 +41,9 @@ export const LinkSchema = SchemaFactory.createForClass(Link);
 
 @Schema(schemaOptions)
 export class Submission {
+	@Prop({ type: Types.ObjectId, ref: "pool" })
+	pool: Types.ObjectId;
+
 	@Prop({ type: Types.ObjectId, ref: Student.name })
 	owner: Array<Types.ObjectId>;
 
@@ -56,6 +61,9 @@ export class Submission {
 
 	@Prop({ type: Boolean })
 	approved: boolean;
+
+	@Prop({ type: Types.ObjectId, ref: UserEntity.name })
+	approved_by: boolean;
 }
 
 export const SubmissionSchema = SchemaFactory.createForClass(Submission);

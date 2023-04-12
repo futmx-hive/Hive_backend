@@ -31,21 +31,21 @@ export class AssigneeService {
 			);
 		}
 	}
-	async createAssignee(poolId: Types.ObjectId, data: Assignee) {
+	async createAssignee(poolId: Types.ObjectId | string, data: Assignee) {
 		const { supervisor_id, students, pool, ...rest } = data;
 		try {
-			const existent = await this.existingAssignee({
-				supervisor_id: data.supervisor_id,
-				pool: poolId,
-			});
-			if (existent) {
-				return existent;
-			}
-			console.log({ existent });
+			// const existent = await this.existingAssignee({
+			// 	supervisor_id: data.supervisor_id,
+			// 	pool: poolId,
+			// });
+			// if (existent) {
+			// 	return existent;
+			// }
+			// console.log({ existent });
 			const res = await this.assignees.create({
 				supervisor_id,
 				students,
-				pool,
+				pool: poolId,
 				...rest,
 			});
 			console.log({ res });
@@ -56,18 +56,12 @@ export class AssigneeService {
 			);
 		}
 	}
-	async BulkCreateAssignees() {}
+	// async BulkCreateAssignees() {}
 
 	async existingAssignee(query: FilterQuery<AssigneeDoc>) {
 		return await this.assignees.findOne(query);
 	}
-	async getAssigneeStudentsProject(
-		assigneeId: Types.ObjectId,
-		supervisorId: Types.ObjectId,
-	) {
-		const Assignee = await this.assignees.findOne({
-			_id: assigneeId,
-			supervisor_id: supervisorId,
-		});
+	findAssignee(q: FilterQuery<Assignee>) {
+		return this.assignees.findOne(q);
 	}
 }

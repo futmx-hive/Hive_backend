@@ -8,13 +8,12 @@ import {
 @Injectable()
 export class DatabaseProvider implements MongooseOptionsFactory {
 	constructor(private configurations: ConfigService) {}
-	createMongooseOptions():
-		| MongooseModuleOptions
-		| Promise<MongooseModuleOptions> {
-		console.log(this.configurations.getOrThrow<string>("mongo_url"));
-		return {
+	async createMongooseOptions(): Promise<MongooseModuleOptions> {
+		const data = {
 			uri: this.configurations.getOrThrow<string>("mongo_url"),
 			retryAttempts: 5,
 		};
+		console.log(data);
+		return data;
 	}
 }

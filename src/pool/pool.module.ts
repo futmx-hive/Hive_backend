@@ -11,6 +11,7 @@ import {
 import { PoolController } from "./pool.controller";
 import { AssigneeService } from "./services/assignee.service";
 import { PoolService } from "./services/pool.service";
+import { studentSubmissionService } from "./services/student.submission.service";
 
 @Module({
 	imports: [
@@ -34,7 +35,7 @@ import { PoolService } from "./services/pool.service";
 			},
 		]),
 	],
-	providers: [PoolService, AssigneeService],
+	providers: [PoolService, AssigneeService, studentSubmissionService],
 	controllers: [PoolController],
 })
 export class PoolModule {}
