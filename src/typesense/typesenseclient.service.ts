@@ -10,16 +10,16 @@ export class TypesenseClientService {
 			nodes: [
 				{
 					host: this.configService.getOrThrow<string>(
-						"TYPESENSE_DEV_HOST",
+						"TYPESENSE_PROD_HOST",
 					), // For Typesense Cloud use xxx.a1.typesense.net
 					port: this.configService.getOrThrow<number>(
-						"TYPESENSE_DEV_PORT",
+						"TYPESENSE_PROD_PORT",
 					), // For Typesense Cloud use 443
-					protocol: "http", // For Typesense Cloud use https
+					protocol: "https", // For Typesense Cloud use https
 				},
 			],
 			apiKey: this.configService.getOrThrow<string>(
-				"TYPESENSE_DEV_ADMIN_KEY",
+				"TYPESENSE_PROD_ADMIN_KEY",
 			),
 			connectionTimeoutSeconds: 5,
 		});

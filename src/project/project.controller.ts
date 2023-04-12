@@ -91,9 +91,15 @@ export class ProjectController {
 
 	@Get("ewee")
 	async genImage() {
-		await this.ProjService.generateProjectImage();
+		await this.ProjService.generateProjectImage("some image");
 		return {
 			data: "ok",
 		};
 	}
 }
+
+// jwPN6iqHOY0GXXgN
+// my_hive_
+
+// DB_USERNAME=hive_admin
+// DB_PASSWORD=bIyhYuQZL5TK5Auj

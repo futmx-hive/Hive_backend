@@ -33,6 +33,10 @@ export class EnvVarDTO {
 
 	@IsNotEmpty()
 	@IsString()
+	TYPESENSE_PROD_HOST: string;
+
+	@IsNotEmpty()
+	@IsString()
 	DB_USERNAME: string;
 
 	@IsNotEmpty()

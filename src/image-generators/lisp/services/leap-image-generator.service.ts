@@ -9,11 +9,11 @@ export class LeapImageGenerator implements imageGen {
 		try {
 			const res = await this.client.client.generate.generateImage({
 				prompt,
-				enhancePrompt: true,
-				height: 300,
-				width: 300,
+				height: 512,
+				width: 512,
 				numberOfImages: 1,
 			});
+			console.log({ res });
 
 			return res.data.images[0].uri;
 		} catch (error) {
