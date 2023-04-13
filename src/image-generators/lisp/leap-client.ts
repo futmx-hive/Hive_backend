@@ -9,5 +9,6 @@ export class LeapClient {
 	client: Leap;
 	constructor(private readonly configService: ConfigService) {
 		this.client = new Leap(this.configService.getOrThrow("LISP_API_KEY"));
+		this.client.usePublicModel("sd-1.5");
 	}
 }

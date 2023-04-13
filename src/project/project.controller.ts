@@ -91,6 +91,7 @@ export class ProjectController {
 
 	@Get("ewee")
 	async genImage() {
+		return "";
 		await this.ProjService.generateProjectImage("some image");
 		return {
 			data: "ok",
