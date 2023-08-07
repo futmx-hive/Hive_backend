@@ -1,0 +1,29 @@
+.toast {
+	cursor: pointer;
+	min-width: 31rem;
+	padding: 1.2rem 1.5rem;
+	&_pkg {
+		position: fixed;
+		left: 21rem;
+		z-index: 40;
+		left: 45%;
+		right: 40%;
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 0.7rem;
+		justify-items: center;
+
+		&.center {
+			left: 0;
+			right: 0;
+		}
+	}
+}
+
+#top {
+	top: 3vh;
+}
+
+#bottom {
+	bottom: 3vh;
+}

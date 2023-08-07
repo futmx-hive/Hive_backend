@@ -1,0 +1,46 @@
+
+@import '../../../../styles/abstract/abstract';
+.oauth{
+
+    &_pkg{
+        gap: 2.5rem;
+    }
+
+    &_btn{
+        gap: 1.9rem;
+        border: 1px solid $col-gray-light;
+    }
+}
+
+.ver_radio{
+    border: 1px solid $col-gray-btn-l;
+    padding: 1.4rem;
+    cursor: pointer;
+    input{
+     display: none;
+
+     &:checked + div{
+        &::before{
+            background-color: $col-ora;
+            border-radius: inherit;
+            display: block;
+        }
+     }
+    }
+    div{
+        width: 24px;
+        height: 24px;
+        border: 2px solid $col-gray-1;
+        align-self: center;
+
+        &::before{
+            content: '';
+            width: 12px;
+            height: 12px;
+            @include center-abs;
+           display: none;
+        }
+    }
+
+
+}

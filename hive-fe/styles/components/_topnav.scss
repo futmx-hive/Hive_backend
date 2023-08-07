@@ -1,0 +1,27 @@
+.top_nav {
+	padding: 1.8rem 0;
+	position: sticky;
+	z-index: 5;
+	top: 0;
+	left: 0;
+	right: 0;
+	border-bottom: 1px solid $slate6;
+	@include respond(gsm){
+		background-color: $col-pri;
+		position: fixed;
+		h1{
+
+			color: $col-white-1;
+		}
+	}
+
+	&_left {
+		a {
+			&,
+			&:link,
+			&:hover {
+				color: $col-black;
+			}
+		}
+	}
+}

@@ -1,0 +1,23 @@
+.hero{
+    height: 100vh;
+    background-image: url('../../public/photos/hero.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+
+
+    h1{
+        font-size: 11rem;
+        font-weight: 200;
+    }
+
+    aside {
+        max-width: 100rem;
+    }
+}
+.header_main{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}

@@ -1,0 +1,13 @@
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.project_up_box {
+  width: 40rem;
+  height: 40rem;
+  border: 5px dashed #dfe3e6;
+}/*# sourceMappingURL=forms.module.css.map */

@@ -1,0 +1,132 @@
+.filter_form {
+	background-color: $col-white;
+
+	display: grid;
+	padding: 3rem 1rem;
+	box-shadow: 0 0.75rem 1.5rem rgba($col-black, 0.07);
+	padding-bottom: 2rem;
+	grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+	gap: 1.7rem;
+
+	&_controls {
+		grid-column: 1/-1;
+	}
+
+	.form_group {
+		label {
+			font-size: 1.7rem;
+			padding: 0;
+		}
+	}
+}
+
+
+
+.check_con {
+	input[type="checkbox"] {
+		display: none;
+	}
+}
+
+.check {
+	&_toog {
+		width: 2.7rem;
+		height: 2.7rem;
+		position: relative;
+		display: inline-block;
+		svg {
+			position: absolute;
+			fill: none;
+			height: 86%;
+			width: auto;
+		}
+		&_layer {
+			border-radius: $border-rad;
+			border: 2px solid darken($col-white-1, 13%);
+		}
+	}
+
+	&_input:checked + &_toog_layer {
+		background-color: darken($col-white-1, 13%);
+	}
+	&_input:checked ~ svg {
+		fill: $col-white;
+	}
+	svg {
+		display: none;
+	}
+}
+
+.dummy_check {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	border: 2px solid $col-black;
+	border-radius: $border-rad;
+	color: $col-black;
+
+	&.round {
+		border-radius: 50%;
+	}
+
+	&::before {
+		display: none;
+		transform: scale(0);
+	}
+	&.checked {
+		background-color: $col-black;
+
+		&.col-w {
+			background-color: $col-white;
+			&::before {
+				// border-color: ;
+			}
+		}
+	}
+
+	&.checked::before {
+		display: block;
+		content: "";
+		width: 15px;
+		height: 8px;
+		border-bottom: 2px solid $col-white-1;
+		border-left: 2px solid $col-white-1;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -80%) rotate(-45deg) scale(1);
+		animation: animm 0.17s ease-in-out forwards;
+	}
+}
+
+.checkbox {
+	display: none;
+	&:checked.readonly + .dummy_check {
+		background-color: $col-dis;
+	}
+	&:checked + .dummy_check {
+		border-color: transparent;
+		background-color: $col-blue;
+		&::before {
+			border-color: $col-white;
+			display: inline-block;
+		}
+	}
+	& + .dummy_check {
+		transform: scale(1.2);
+		background-color: $col-bord-2;
+		border-color: $col-bord-1;
+
+		&::before {
+			display: none;
+		}
+	}
+}
+@keyframes animm {
+	from {
+		transform: translate(-50%, -80%) rotate(40deg) scale(0);
+	}
+	to {
+		transform: translate(-50%, -80%) rotate(-45deg) scale(1);
+	}
+}

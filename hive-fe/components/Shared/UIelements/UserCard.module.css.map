@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../styles/abstract/_abstract.scss","UserCard.module.css","UserCard.module.scss"],"names":[],"mappings":"AAmHA;EACC;IACC,UAAA;EClHA;EDqHD;IACC,UAAA;ECnHA;AACF;ACLI;EACI,aFSI;ACFZ;AD4FE;EEpGE;IAGQ,yBAAA;EDSV;AACF;ACPG;EACK,kBAAA;EACA,MAAA;EACA,WAAA;EACA,2BAAA;ADSR","file":"UserCard.module.css"}

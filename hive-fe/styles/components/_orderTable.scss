@@ -1,0 +1,31 @@
+.order_table {
+	&_head {
+		padding: 1.3rem;
+
+		button {
+			font-size: 1.4rem;
+		}
+	}
+	&_head,
+	&_tr {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		align-items: center;
+		gap: 1.5rem;
+		color: $col-black;
+		border-color: $col-bord-3;
+	}
+	&_tr {
+		padding: 1rem;
+		cursor: pointer;
+
+		&:hover {
+			background-color: $col-white-1;
+		}
+	}
+	&_td {
+		.badge_doub {
+			width: 80%;
+		}
+	}
+}

@@ -1,0 +1,149 @@
+.sidebar {
+
+	display: flex;
+	flex-direction: column;
+	padding-bottom: 4rem;
+
+	border-bottom: 1px solid $slate6;
+	border-right: 1px solid $slate6;
+
+	& .sidebar_logo{
+		margin: 1.8rem;
+	}
+
+
+	&_hide{
+		display: none;
+	}
+	
+
+	&_toog {
+		cursor: pointer;
+		&:hover {
+		  span {
+			// background-color: $col-blue;
+			&::before,
+			&::after {
+			  background-color: $col-white-1;
+			}
+			&::before {
+			  transform: translateY(-1rem);
+			}
+			&::after {
+			  transform: translateY(1rem);
+			}
+		  }
+		}
+		span {
+		  position: relative;
+		  width: 3rem;
+		  display: inline-block;
+		  height: 2px;
+		  border-radius: 5px;
+		  background-color: $col-bord-1;
+		  transform-origin: right;
+	
+		  &::before,
+		  &::after {
+			content: "";
+			position: absolute;
+			height: 100%;
+			width: 2.5rem;
+			left: 0;
+			transform-origin: left;
+			background-color: $col-bord-1;
+			transition: 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+		  }
+		  &::before {
+			top: 0;
+			transform: scaleX(1) translateY(-1.2rem);
+		  }
+		  &::after {
+			bottom: 0;
+			transform: scaleX(1) translateY(1.2rem);
+		  }
+		}
+	  }
+
+	@include respond(1100){
+       justify-content: flex-start;
+	   gap: 10%;
+	   padding-top: 10%;
+	}
+  &#res{
+	  position: fixed;
+	  top: 0;
+	  bottom: 0;
+	  left: 0;
+	  z-index: 7;
+  }
+
+	&_list {
+		padding: 4rem 0;
+		margin-bottom: auto;
+
+	
+	}
+	&_logo {
+		width: 10rem;
+		height: 4rem;
+	}
+
+	&_base {
+		
+
+
+			margin: 0 2rem;
+	
+	}
+
+	button {
+		font-size: inherit;
+		font-family: inherit;
+	}
+	&_list {
+		display: grid;
+		row-gap: 1.4rem;
+
+		&_item{
+			margin: 0 2rem;
+		}
+	}
+
+	&_link {
+		width: 100%;
+		padding: 1.4rem;
+
+
+	    white-space: nowrap;
+		padding-left: 4%;
+		color: $col-black;
+		font-weight: $weight-1;
+		position: relative;
+		transition: $transition;
+
+
+		&::before {
+			content: "";
+			width: 5px;
+			height: 100%;
+			opacity: 0;
+			position: absolute;
+			right: 0;
+			bottom: 0;
+		}
+
+		&:hover,
+		&.active {
+			background-color: $slate6;
+			color: $col-pri;
+			transition: $transition;
+
+			&::before {
+				opacity: 1;
+				transition: 0.15s
+					cubic-bezier(1, 0, 0, 1);
+			}
+		}
+	}
+}

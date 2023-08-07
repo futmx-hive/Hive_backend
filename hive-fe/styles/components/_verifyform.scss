@@ -1,0 +1,37 @@
+.verify_form {
+	.verify {
+		position: absolute;
+		top: 0;
+		left: 0;
+		transform: translate(-50%, -20%);
+	}
+	&_list {
+		counter-reset: test;
+		&_item {
+			padding-left: 8rem;
+			position: relative;
+			display: grid;
+			row-gap: 2rem;
+			padding-bottom: 2rem;
+
+			&.active {
+				padding-bottom: 3rem;
+
+				&::before {
+					background-color: $col-blue;
+				}
+			}
+
+			&::before {
+				content: '';
+				width: 2px;
+				background-color: $col-bord-1;
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				height: 102%;
+			}
+		}
+	}
+}

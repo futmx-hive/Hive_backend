@@ -1,0 +1,11 @@
+.phone_input {
+	&_form {
+		display: grid;
+		column-gap: 2rem;
+		grid-template-columns: 30rem max-content;
+
+		button {
+			padding: 1rem 2.5rem;
+		}
+	}
+}

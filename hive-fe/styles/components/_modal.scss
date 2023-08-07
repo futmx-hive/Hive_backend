@@ -1,0 +1,48 @@
+.modal {
+	z-index: 10;
+	display: block;
+
+	@include respond(gsm){
+		padding: 0 1.5rem;
+	}
+
+	& > * {
+	min-width:0;
+	}
+}
+
+.fixed_modal_pack {
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 9;
+	bottom: 0;
+	z-index: 8;
+	left: calc(25rem);
+    display: grid;
+	align-content: center;
+	@include respond(gsm){
+		left: 0;
+	}
+
+	&.fill {
+		left: initial;
+	}
+}
+
+
+.modal_w{
+
+	&_med{
+      max-width: 512px;
+	  margin: 0 3rem;
+	  margin: auto;
+
+	  @include respond(gsm){
+		margin: 0;
+		width: 100%;
+		margin: 0 ;
+	  }
+	}
+}
+

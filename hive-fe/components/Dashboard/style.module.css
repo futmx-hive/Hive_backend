@@ -1,0 +1,28 @@
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.comm {
+  padding: 4rem 0;
+}
+
+.top_comm img, .balance img {
+  width: 100%;
+}
+
+.balance img {
+  width: 100%;
+  display: block;
+}
+
+@media (max-width: 31.25em) {
+  .dash_left {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+}/*# sourceMappingURL=style.module.css.map */

@@ -1,0 +1,56 @@
+@font-face {
+  font-family: Figtree;
+  src: url('/Figtree/Figtree-VariableFont_wght.ttf');
+}
+.markup_bowow{
+  padding: 7rem 6rem;
+ 
+
+  & > *{
+    font-family: Figtree, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    line-height: 2;
+  }
+  
+  & > *:not(h1,h2,h3,h4,h5,h6,small,sub){
+    font-size: 16px;
+  }
+
+  td{
+    padding: 1.2rem 1rem;
+
+    p{
+        font-size: 15px
+    }
+  }
+  a{
+    &:link{
+        color: inherit;
+    }
+  }
+
+  img{
+max-height: 29rem;
+  }
+  h1:first-child{
+    font-size: 6rem;
+  }
+
+  .head + p,
+  .head + h1{
+    font-size: 6rem;
+    font-weight: 1000;
+    line-height: 1.5;
+  }
+
+  h1{
+    margin-top: 4rem;
+    line-height: 1.5;
+  }
+
+  h2{
+    margin-top: 2rem;
+  }
+  h1,h2,h3,h4{
+    font-weight: 1000;
+  }
+} 

@@ -1,0 +1,9 @@
+@import '../../../styles/abstract/abstract';
+.project_up{
+
+    &_box{
+         width:40rem;
+         height: 40rem;
+        border: 5px dashed $slate6;
+    }
+}

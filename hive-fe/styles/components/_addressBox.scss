@@ -1,0 +1,24 @@
+.address {
+	display: grid;
+	grid-template-columns: repeat(2, max-content);
+	align-items: center;
+	grid-template-areas:
+		'image txt'
+		' image txt';
+	&_img {
+		grid-area: image;
+		width: 6rem;
+		height: 6rem;
+		position: relative;
+
+		svg {
+			width: 4rem;
+			height: 4rem;
+			fill: $col-gray-dark;
+			@include center-abs;
+		}
+	}
+	&_text {
+		grid-area: txt;
+	}
+}

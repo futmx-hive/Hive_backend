@@ -1,0 +1,20 @@
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.head_txt {
+  display: grid;
+  gap: 2rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+@media (max-width: 31.25em) {
+  .head_txt {
+    margin-top: 1rem;
+    gap: 1rem;
+  }
+}/*# sourceMappingURL=style.module.css.map */

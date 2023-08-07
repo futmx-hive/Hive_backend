@@ -1,0 +1,23 @@
+.order_summary {
+	position: relative;
+	width: 530px;
+	max-width: 573px;
+	padding: 4rem 5rem;
+
+	&_pack {
+		padding-right: 2rem;
+		height: 25rem;
+		overflow: hidden;
+		overflow-y: scroll;
+	}
+
+	&_item {
+		padding: 1.5rem 0;
+
+		&_det {
+			align-self: center;
+		}
+		img {
+		}
+	}
+}

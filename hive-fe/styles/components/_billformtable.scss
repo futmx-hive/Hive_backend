@@ -1,0 +1,43 @@
+.table_body,
+.bill_table_header {
+	display: grid;
+	grid-template-columns: 0.2fr 2fr 1fr 1.2fr 1.2fr;
+	grid-template-areas: 'a b c d e';
+	gap: 5rem;
+	row-gap: 2rem;
+
+	.form_input {
+		padding: 5px;
+		border-radius: $border-rad;
+	}
+	.form_select_title {
+		margin: initial;
+	}
+}
+.bill {
+	&_sn {
+		align-self: center;
+	}
+	&_table {
+		&_header {
+			padding-bottom: 1.5rem;
+			border-bottom: 1px solid $col-bord-1;
+			& > * {
+				font-weight: $weight-2;
+				text-transform: capitalize;
+				font-size: 1.5rem;
+			}
+		}
+
+		&_body {
+			.counter {
+				align-self: center;
+			}
+		}
+	}
+}
+.tax {
+	&_amount {
+		grid-area: e;
+	}
+}

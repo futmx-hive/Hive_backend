@@ -1,0 +1,38 @@
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.sep {
+  width: 3rem;
+  height: 10rem;
+  top: 0;
+  left: 0;
+  transform: translate(-100%, -50%);
+  background-color: transparent;
+  border: 3px solid #c1c8cd;
+  border-right: none;
+  z-index: 0;
+}
+.sep::before, .sep::after {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 12px;
+  background-color: hsl(149, 100%, 40%);
+  border-radius: 6px 0 0 6px;
+  position: absolute;
+  right: 0;
+  z-index: -1;
+}
+.sep::before {
+  top: 0;
+  transform: translate(0, -50%);
+}
+.sep::after {
+  bottom: 0;
+  transform: translate(0, 50%);
+}/*# sourceMappingURL=styles.module.css.map */

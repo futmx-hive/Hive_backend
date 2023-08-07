@@ -1,0 +1,22 @@
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.icon svg {
+  fill: #181E19;
+}
+@media (max-width: 31.25em) {
+  .icon svg {
+    fill: hsl(207, 100%, 98%);
+  }
+}
+.icon > span {
+  position: absolute;
+  top: 0;
+  right: -10%;
+  transform: translateY(-70%);
+}/*# sourceMappingURL=UserCard.module.css.map */

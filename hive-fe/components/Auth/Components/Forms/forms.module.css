@@ -1,0 +1,45 @@
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.oauth_pkg {
+  gap: 2.5rem;
+}
+.oauth_btn {
+  gap: 1.9rem;
+  border: 1px solid #a8a8a8;
+}
+
+.ver_radio {
+  border: 1px solid #dbdbdb;
+  padding: 1.4rem;
+  cursor: pointer;
+}
+.ver_radio input {
+  display: none;
+}
+.ver_radio input:checked + div::before {
+  background-color: #EF7329;
+  border-radius: inherit;
+  display: block;
+}
+.ver_radio div {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #f0f0f0;
+  align-self: center;
+}
+.ver_radio div::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+}/*# sourceMappingURL=forms.module.css.map */

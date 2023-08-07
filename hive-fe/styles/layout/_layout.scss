@@ -1,0 +1,178 @@
+.grid-con {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: max-content 1fr;
+    grid-template-rows: max-content 1fr;
+    grid-template-areas:
+        "sidebar header"
+        "sidebar main";
+}
+.container {
+    margin: auto;
+    // max-width: 1140px;
+    max-width: 88%;
+
+    &-min {
+        @extend .container;
+        max-width: 91.01%;
+    }
+}
+$cons: 833 718 675 583 752 ;
+@each $var in $cons {
+    .container-c#{$var} {
+        max-width: $var/10 * 1rem;
+        margin: 0 auto;
+    }
+}
+.container-main{
+    max-width: 135rem;
+    margin: auto;
+}
+
+.container-lg {
+    width: 91.261%;
+    margin: auto;
+
+}
+.div_4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1.5rem;
+}
+.div_41 {
+    --width:23rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--width),1fr ));
+    gap: 1.5rem;
+}
+
+.smart_con {
+    grid-template-columns: repeat(auto-fit, 250px);
+    display: grid;
+    gap: 4rem;
+}
+.con {
+    &_head {
+        padding: 2.5rem 0;
+        border-radius: 5px 5px 0 0;
+        background-color: darken($col-white-1, 5%);
+        border: 1px solid darken($col-white-1, 8%);
+        color: darken($col-blue, 3%);
+    }
+
+    &_body {
+        padding: 3rem 0;
+        border-radius: 0 0 5px 5px;
+    }
+}
+
+.big_box {
+    &.base {
+        align-items: flex-end;
+    }
+    &_head {
+        margin-right: 4rem;
+    }
+    &_pack {
+        flex: 1;
+    }
+}
+.text_con {
+    display: grid;
+    justify-content: end;
+    column-gap: 4rem;
+
+    &--2 {
+        grid-template-columns: repeat(2, minmax(20rem, max-content));
+    }
+    &--3 {
+        grid-template-columns: repeat(3, minmax(max-content, 1fr));
+    }
+}
+.con_4 {
+    --gap: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+    gap: var(--gap);
+}
+
+.con_2_4 {
+    --gap: 6rem;
+    grid-template-columns: 1.5fr 4fr;
+    gap: var(--gap);
+}
+.con_4_1_1 {
+    --gap: 2.5rem;
+    grid-template-columns: 4fr 1fr 1fr;
+    gap: var(--gap);
+}
+.con_2_4,
+.con_4_1_1,
+.con_4,
+.con_1_4,
+.con_5_2,
+.con_4_1,
+.con_2_2,
+.con_1_1,
+.con_1_1_1 {
+    display: grid;
+}
+.con_4_1 {
+    --gap: 2rem;
+    grid-template-columns: 4.2fr 1.5fr;
+    gap: var(--gap);
+}
+.con_5_2 {
+    --gap: 4rem;
+    --a: 380px;
+    --b: 380px;
+    grid-template-columns: minmax(var(--a),5fr)  minmax(var(--b) ,2.1fr);
+    gap: var(--gap);
+    @include respond(gsm){
+        display: block;
+    }
+}
+.con_1_1 {
+    --gap: 4rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--gap);
+}
+.con_1_1_1 {
+    --width: 28.5rem;
+    --gap: 4%;
+    --repeat: auto-fit;
+
+    grid-template-columns: repeat(var(--repeat), minmax(var(--width), 1fr));
+    gap: var(--gap);
+
+}
+
+.grid_1_x_1 {
+    display: grid;
+    grid-template-columns: 1fr min-content 1fr;
+}
+.grid_max_1 {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+}
+.grid_1_max {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) max-content;
+}
+.grid_txt {
+    display: grid;
+    grid-row-gap: 0.8rem;
+}
+
+$gaps: 1.6rem 2.4rem 3rem 4rem;
+
+.flex-1{
+    flex: 1;
+}
+@for $var from 1 to 5 {
+    .grid_txt_#{$var} {
+        display: grid;
+        grid-row-gap: nth($gaps, $var);
+    }
+}
+
+

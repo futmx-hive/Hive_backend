@@ -1,0 +1,11 @@
+@import '../../styles/abstract/abstract';
+.head_txt{
+    display: grid;
+    gap: 2rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    @include respond(gsm){
+        margin-top: 1rem;
+        gap: 1rem;
+    }
+}

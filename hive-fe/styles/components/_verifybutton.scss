@@ -1,0 +1,56 @@
+.verify {
+	border: 2px solid $col-bord-1;
+	width: 4rem;
+	height: 4rem;
+	background-color: $col-white;
+	svg {
+		display: inline-block;
+		fill: $col-white-1;
+		opacity: 0;
+		transform: rotate(90deg) scale(0);
+		transition: 0.2s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+	}
+	&.normal {
+		border: none;
+		&::before {
+			display: none;
+		}
+	}
+	&::before {
+		content: counter(test);
+		counter-increment: test;
+		font-size: 1.8rem;
+		color: $col-gray-dark;
+		@include center-abs;
+	}
+
+	&.active {
+		background-color: $col-blue;
+		border-color: transparent;
+		&::before {
+			color: $col-white-1;
+		}
+	}
+	&.done,
+	&:hover {
+		background-color: $col-blue;
+		border: none;
+
+		&::before {
+			opacity: 0;
+		}
+		svg {
+			opacity: 1;
+			transform: rotate(0deg) scale(1) translate(-50%, -50%);
+		}
+	}
+
+	&_svg.small {
+		width: 2rem;
+		height: 2rem;
+	}
+	&_svg.large {
+		width: 2rem;
+		height: 2rem;
+	}
+}

@@ -1,0 +1,18 @@
+.confirm_phone {
+	&_box {
+	}
+
+	&_controls {
+		width: 65%;
+	}
+
+	&_otp {
+		.confirm_form,
+		button {
+			width: 55%;
+		}
+		.confirm_form {
+			margin-top: 2rem;
+		}
+	}
+}

@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "paths": {
+        "@sprite/*":["/public/svg/sprite/*"],
+        "@layout/*": ["components/Layout/*"],
+        "@animations/*":["/Animations/*"],
+        "@hooks/*":["hooks/*"],
+        "@utils/*":["utils/*"],
+        "@pools/*":["components/pools"],
+        "@projects/*":["components/Project"],
+        "@form-components/*":["components/Shared/Form/*"],
+        "@sharedUi/*":["components/Shared/UIelements/*"],
+        "@shared/*":["components/Shared/*"],
+        "@auth/*": ["components/Auth"],
+        "@components/*": ["components/*"],
+      }
+    }
+  }

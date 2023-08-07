@@ -1,0 +1,33 @@
+.added_entity {
+	position: relative;
+
+	&_img {
+		height: 12.5rem;
+		width: 15rem;
+		overflow: hidden;
+		position: relative;
+
+		img {
+			object-fit: cover;
+			width: 100%;
+			@include center-abs;
+		}
+		img,
+		svg {
+			height: 100%;
+			width: auto;
+			fill: $col-gray-svg;
+		}
+		svg {
+			width: 12rem;
+		}
+	}
+
+	.dropdown {
+		position: absolute;
+		right: 1rem;
+		top: 2rem;
+	}
+	&_details {
+	}
+}

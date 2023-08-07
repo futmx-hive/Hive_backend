@@ -1,0 +1,33 @@
+@import '../../../styles//abstract/abstract';
+.sep{
+    width: 3rem;
+    height: 10rem;
+    top: 0;
+    left: 0;
+    transform: translate(-100%,-50%) ;
+    background-color: transparent;
+    border: 3px solid $slate8;
+    border-right: none;
+z-index: 0;
+    &::before,&::after{
+        content: "";
+        display: inline-block;
+        width: 6px;
+        height: 12px;
+        background-color: $col-green;
+        border-radius: 6px   0 0 6px;
+        position: absolute;
+        right: 0;
+        z-index: -1;
+    }
+
+    &::before{
+        top: 0;
+        transform: translate(0,-50%);
+
+    }
+    &::after{
+        bottom: 0;
+        transform: translate(0,50%);
+    }
+}

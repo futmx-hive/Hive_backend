@@ -1,0 +1,1548 @@
+ PAGE
+
+FAKE REVIEWS DETECTION USING OPTIMIZED CUCKOO SEARCH AND SUPPORT VECTOR MACHINE
+
+
+
+
+
+BY
+
+
+
+
+
+OLUKAYODE Busayo Motunrayo
+
+2016/2/64338CT
+
+
+
+DEPARTMENT OF COMPUTER SCIENCE
+
+FEDERAL UNIVERSITY OF TECHNOLOGY
+
+MINNA
+
+
+
+
+
+AUGUST, 2021
+
+TITLE PAGECOVER PAGE
+
+FAKE REVIEWS DETECTION USING OPTIMIZED CUCKOO SEARCH AND SUPPORT VECTOR MACHINE
+
+
+
+
+
+BY
+
+
+
+OLUKAYODE Busayo Motunrayo
+
+2016/2/64338CT
+
+
+
+
+
+PROJECT SUBMITTED TO THE DEPARTMENT OF COMPUTER SCIENCE, SCHOOL OF INFORMATION AND COMMUNICATION TECHNOLOGY, FEDERAL UNIVERSITY OF TECHNOLOGY, MINNA, NIGERIA IN PARTIAL FULFILLMENT OF THE REQUIREMENT FOR THE AWARD OF THE DEGREE OF BACHELOR OF TECHNOLOGY IN COMPUTER SCIENCE
+
+
+
+
+
+AUGUST, 2021
+
+DECLARATION
+
+I hereby declare that this project titled: Fake Reviews Detection Using Optimized Cuckoo Search and Support Vector Machineis a collection of my original project work and it has not been presented for any other qualification anywhere. Information from other sources (published or unpublished) has been duly acknowledged.
+
+
+
+
+
+OLUKAYODE Busayo Motunrayo
+
+
+
+
+
+2016/2/64338CT						   Signature and Date
+
+Federal University of Technology,
+
+Minna, Nigeria.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CERTIFICATION
+
+The project titled: Fake Reviews Detection Using Optimized Cuckoo Search and Support Vector Machine by: OLUKAYODE Busayo Motunrayo, (2016/2/64338CT) meets the regulations governing the award of Bachelor of Technology (B.Tech) in Computer Science of the Federal University of Technology, Minna.
+
+
+
+
+
+
+
+Dr M.B. Abdullahi
+
+
+
+
+
+Project Supervisor						      Signature and Date
+
+
+
+
+
+
+
+Dr (Mrs) O. A. Abisoye
+
+
+
+
+
+Head of Department						      Signature and Date
+
+	
+
+
+
+
+
+
+
+
+
+DEDICATION
+
+This research work is dedicated to God Almighty and to my loving and ever supportive mother Mrs. Florence Olukayode.
+
+
+
+ACKNOWLEDGEMENTS
+
+My profound gratitude goes to the God Almighty for His mercies and faithfulness upon my life.
+
+Special thanks to my supervisor Dr Muhammad Bashir ABDULLAHI for his guidance and for providing all the information necessary to carry out this project. May God reward you mightily in Jesus name. 
+
+Special thanks to all my teachers these years, especially my lecturers in CPT Department, FUTMinna;  Dr (Mrs) Aderike Opeyemi ABISOYE (our mother and HOD), Dr Muhammad Bashir ABDULLAHI, Dr Solomon Adelowo ADEPOJU, Mr Adamu Muhammad SALIU, Dr Mohammed Danlami ABDULMALIK, Dr Sulaimon Adebayo BASHIR, Dr Oluwaseun Adeniyi OJERINDE, Mr Cosmas Uchenna UGWUOKE, Mr Ibrahim Shehi SHEHU, Mr Enesi Femi AMINU, Mr Mohammed Idris KOLO, Mr Adesuyi Adeyinka FALAYE, Mr Kudu Muhammad MUHAMMAD, Mr Victor Ndako ADAMA, Mr Kehinde Husseini LAWAL, Mrs Ayobami EKUNDAYO, Mr Yakubu Boyi-Musa LASOTTE, Mr Olamilekan Lawal LAWAL, and Mr Alkali Umar SANI. Thank you for your patience, and the immense sacrifices made over the years towards making me better in learning, morals, and character.
+
+To my mother Mrs. Florence Olukayode, my wonderful siblings Oluwaseyi Olukayode, Ayodeji Olukayode, Ayokunle Olukayode, I cannot thank you enough for your contributions and all round support towards my academic success over the years. 
+
+Lastly, I appreciate my loving and valuable friends, thank you for the quality time spent together. To all my course mates, God bless you for making it easy to learn by making the classroom as conducive as possible. Thanks for your contributions towards the success of this episode of my life. See you all at the top.
+
+ABSTRACT
+
+In today’s world, where Internet has become a household convenience, online reviews have become a critical tool for businesses to control their online reputation.Online reviews are a vital source of information that may be used to determine public opinion on products or services, and are often the key element in a customer's choice to purchase a product or service.Reviewing has changed the face of marketing in this new era, thereforeit has become essential to detect fake reviews to bring to surface the true product opinion. This study focused on product reviews using SVM classifier which isa machine learning-based model to classify fake reviews and Cuckoo search optimization algorithm for result optimization. The result obtained showed that CS-SVM performed better than SVM with an accuracy of over 70%.It was therefore recommended that Cuckoo Search Algorithm can be used to optimize a classifier to improve its efficiency and performance.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+TABLE OF CONTENTS
+
+COVER PAGE									i
+
+TITLE PAGE										ii
+
+DECLARATION									iii
+
+CERTIFICATION									iv
+
+DEDICATION									v
+
+ACKNOWLEDGEMENTS								vi
+
+ABSTRACT										vii
+
+TABLE OF CONTENTS								viii
+
+LIST OF FIGURES									xii
+
+LIST OF TABLES									xiii
+
+CHAPTER ONE									1
+
+INTRODUCTION									1
+
+1.1	Background of the Study							1
+
+1.2	Statement of Problem								2
+
+1.3	Aim and Objectives of Study							4
+
+1.4	Scope and Limitation								4
+
+1.5	Significance of Study								4
+
+CHAPTER TWO									5
+
+LITERATURE REVIEW								5
+
+2.0	Introduction									5
+
+2.1	Fake Review									5
+
+2.1.1	Review Content-Based Detection						6
+
+2.1.2	Deviations among Rating-Based Detection					6
+
+2.1.3	Review Content along with User Behaviour-Based Detection		6
+
+2.2	Detection Techniques for Fake Reviews					7
+
+2.3	Machine Learning								7
+
+2.4	Types of Learning								8
+
+2.4.1	Supervised Learning								8
+
+2.4.2	Unsupervised Learning							9
+
+2.4.3 	Semi-Supervised Learning							9
+
+2.4.4	Reinforced Learning								9
+
+2.5	Machine Learning Models							10
+
+2.5.1	Decision Tree									10
+
+2.5.2	Artificial Neural Network							11
+
+2.5.3	Logistic Regression								11
+
+2.5.4	Naive BAYES									11
+
+2.5.5	 Support Vector Machine							12
+
+2.6	 Optimization Algorithms							13
+
+2.7	 Metaheuristic Algorithms							14
+
+2.8	Desired Algorithm								15
+
+2.8.1	Cuckoo Parasitic Bird Behaviour						15
+
+2.8.2	Cuckoo Search Algorithm							16
+
+2.9	Review of Related Work							17
+
+CHAPTER THREE									22
+
+METHODS AND MATERIALS							22
+
+3.1	Introduction									22
+
+3.2	Proposed Solution								22
+
+3.3	Classifying Fake Reviews							22
+
+3.4	System Architecture								22
+
+3.4.1	Data Collection								23
+
+3.6	Supervised Classification							25
+
+3.7	Proposed Algorithm								25
+
+3.7.1	Cuckoo Search Algorithm							25
+
+3.7.2	Cuckoo Search Pseudocode							26
+
+3.8	Technologies									28
+
+3.9.1	Classification Report								29
+
+CHAPTER FOUR									31
+
+RESULT AND DISCUSSION 							31
+
+4.1	Introduction									31
+
+4.2	Experimental Results 								31	
+
+4.2.1	Experiment 1									31
+
+4.3	Discussion									35
+
+CHAPTER FIVE									36
+
+CONCLUSIONS AND RECOMMENDATION					36
+
+5.1 Conclusions									36
+
+5.2 Contribution to Knowledge							36
+
+5.3 Recommendations									36
+
+REFERENCES									37
+
+APPENDIX										40
+
+LIST OF FIGURES
+
+FIGURE										       PAGE
+
+Figure 2.1: Types of machine learning							8
+
+Figure 2.2: Support Vector Machine								13
+
+Figure 2.3: Cuckoo Bird									16
+
+Figure 2.4: Cuckoo Behaviour								18
+
+Figure 3.1: Architecture flow of proposed algorithm						23
+
+Figure 3.2: Flowchart of Cuckoo Search Algorithm						27
+
+Figure 4.1: Visualisation of performance with Amazon review dataset1			34
+
+Figure 4.2: Visualisation of performance with Amazon review dataset2			36
+
+Figure 4.3: Graph of Iteration for Dataset1							47
+
+Figure 4.4: Graph of Iteration for Dataset2							48
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+LIST OF TABLES
+
+TABLE										PAGE
+
+Table 4.1:Iteration results for SVM on Amazon review dataset1				44
+
+Table 4.2: Iteration results for SVM on Amazon review dataset2				45
+
+Table 4.3:Iteration results for CS-SVM on Amazon review dataset1			46
+
+Table 4.4:Iteration results for CS-SVM on Amazon review dataset2			47
+
+
+
+
+
+
+
+CHAPTER ONE
+
+INTRODUCTION
+
+Background of the Study
+
+Not only has the Internet altered customers' perceptions of online shopping, it has also altered corporate procedures. Customers nowadays choose to purchase most goods and services through e-commerce or internet portals. These e-commerce or online portals have given rise to new marketing and customer decision-influencing strategies, such as reviews. Any view or opinion expressed on a product or service by someone who is not affiliated with the company is referred to as a review. User Generated Content (UGC) is the term used to describe the reviews that appear on a website (Chowdhary, 2018).
+
+Online reviews have had a huge effect on businesses in recent years, and they have become crucial for evaluating operational efficiency.E-commerce is one of several businesses where this is true.Unfortunately, some companies use dishonest ways to improve their digital credibility, such as making false remarks about their own companies or competitors. There are a multitude of techniques that may be used to combat fake reviews (Ahmad & Murad, 2020).Online reviews are a vital source of information that may be used to determine public opinion on products or services, and are often the key element in a customer's choice to purchase a product or service (Journal, n.d.).
+
+Everyone can anonymously and without fear of consequences, express their thoughts and beliefs. It's become even easier to publish openly and confidently using social media and internet posting. These opinions have both advantages and disadvantages when it comes to providing the proper input to the right person who can help solve the problem, and when they are manipulated (Le, 2020).
+
+Most sites encourage the maintenance of existing social networks, but some bring people together based on mutual interests, political opinions, online reviews, or other activities that could influence people's purchasing decisions. Some sites place an emphasis on user feedback and suggestions. Some reviews are positive, while others are negative. They have a significant impact on users' judgments about whether or not to acquire things in any case (Karumanchi et al., 2018).
+
+Because consumers value reliable information and e-commerce platforms, value excellent reputations, their incentives should be aligned such that fake reviews are avoided. This isn't always the case, though allowing fake reviews may benefit platforms in particular if these reviews enhance revenue by promoting sales or allowing for higher prices (He et al., 2021).
+
+Consumers are increasingly submitting online reviews of products in the era of the Internet and e-commerce, as online businesses continue to flourish and become more popular. This is one of the easiest ways for customers to give feedback on the services or items they purchased. By providing vital information to future clients, the evaluations have become valuable by assisting customers in gaining a better understanding of the products or services they intend to acquire. These user-generated content sources can also be beneficial to online-business entities. Merchants can utilize this data to better their products, services, marketing tactics, and competitive analysis (Le, 2020).
+
+Individuals form their opinions as to whether to buy items or not by evaluating and observing the previous opinions on such goods. There are true and false comments. If the general view is not appropriate, it is unlikely that they just do not purchase the stuff. Now even consumers can post any viewpoint message that inspires customers to offer negative reviews of a specific item. Even with the invention of a vast amount of data accessible in the digital world as well as a huge number of customers, utilizing this data, retrieving the views of customers is becoming essential throughout the globalized society (Vaibhavalakshmi & Deepthi, 2020).
+
+Evaluating customer comments and making appropriate recommendations to users based on these remarks is becoming increasingly crucial in assisting customers in gaining the necessary knowledge about a worthwhile item that they wish to purchase. Although customer reviews can be valuable, putting too much faith in them can be dangerous for both consumers and sellers (Vaibhavalakshmi & Deepthi, 2020).
+
+Fake review detection is usually on the basis of data-driven algorithms that take into account a variety of variables connected with reviews and reviewers that may be utilized to categorize evaluations based on their trustworthiness. Machine learning techniques can provide a big contribution to detecting fake reviews of web content(Elmogy et al., 2021).In general, supervised classifiers are more successful, and they frequently use review and reviewer-centric information.To recognize online false reviews, this study makes use of the optimizedCuckoo search algorithm and SVM classifier. The data that needs to be categorised is pre-processed.
+
+Statement of Problem of the Study
+
+Customer reviews offer a new approach to learning about customer preferences, products quality, and flaws. A customer's online review is a permanent record of their experience, it is accessible to everybody and reaches a much broader audience than ever before. Consumers can publish reviews and express their own thoughts about items or services on almost every internet platform, as well as specific review websites like Yelp and Amazon. This user-generated content can be used to learn about customers' preferences, strengths, and limitations, as well as to assess market conditions, identify new product launch opportunities, and develop strategies to outperform competitors. As a result, a number of measures must be put in place to protect the integrity of online reviews. This research used a machine learning based model to handle the problem of fake reviews using the Cuckoo search optimisation algorithm and SVM classifier.
+
+1.3	Aim and Objectives of the Study
+
+The aim of this project is todetect fake reviews usingCuckoo Search – optimised Support Vector Machine. The objectives include:
+
+To useSVM Machine Learning Basedmodelto classify fake reviews
+
+To apply Cuckoo Search Optimisation on the SVM classifier
+
+To evaluate the performance of theCuckoo Search-optimised Support Vector Machinemodel on real world datasets
+
+1.4	Scope and Limitation of the Study
+
+This study does not concern itself with every aspect of online review. The study instead focused onusing a Machine Learning BasedModel to help detect fake reviews of products online,specifically software productsusing the Cuckoo search optimization algorithm and SVM classifier.
+
+1.5	Significance of the Study
+
+For the majority of customers of various internet services, reviews have become a very dependable source of information. Because reviews constitute valid feedback on whether a service is good or bad, any attempt to sway those evaluations by generating fake or misleading content is considered deceptive, and those reviews are labelled as false. As a result, determining whether all of the provided reviews are authentic or real remains a crucial topic of research.
+
+CHAPTER TWO
+
+LITERATURE REVIEW
+
+2.0	Introduction
+
+This section gives an outline of fake reviews, machine learning algorithms, machine learningmodelsand review of study conducted by different researchers in this field of study.
+
+2.1	Fake Review		
+
+Customers had limited access to brand information through traditional media a few years ago, when social networking was not available.In those times, organizations had the option to position the brand in the mind of the customer through their promoting systems(Maryville University, 2020). In this day and age,consumers essentially depend on online reviews for brand choice, and review sites are progressively defenceless against the distribution of disinformation, often known as opinion spam, with the goal of advancing or harming some objective groups by deceiving either human readers or automated assessment mining and notion investigation frameworks(Karumanchi et al., 2018).
+
+Online business is filled with reviews and ratings, owing to the growing popularity of websites like Yelp and Amazon.com, where consumers can express their opinions on various products and rate them. Consumers are right now changing to the useofsocial networks and are investing substantialamount of time with online marketing than with any other marketing channel. Thus, discovering product reviews is simple(Elmurngi & Gherbi, 2018).In online business, consumer feedback reviews are valuable data for clients hoping to take out uncertainty while settling on buying choices. In any case, as the number of feedback evaluations grows, clients are bound to settle on buying choices dependent on negative or positive feedback (Vaibhavalakshmi & Deepthi, 2020).
+
+
+
+Fake reviews are viewed as a sort of opinion spamming. It is characterized as composing a false review. Rather than communicating their real thoughts or encounters, reviewersendeavour to bamboozle readers or sentiment analysis methods based on automated opinion mining, which isreferred to as a dishonest conduct. These reviewers give great or negative input on an item, administration, or corporate substance to advance it(Le, 2020).
+
+As such, a fake review is one that deliberately gives false or deluding data, conclusions, encounters, or insignificant data about the reviewed object. False reviews, peddling reviews, misleading reviews, or spam reviews are generally terms used to depict fake reviews (Barbado et al., 2020). According to past research, review content-based detection, deviations among the ratings-based detection, and review content along with user behaviour-based detection are the three principle recognition techniques for counterfeit audits.
+
+2.1.1	Review Content-Based Detection
+
+This procedure centres on perceiving and arranging fake reviews just based on the assessment communicated or viewed in the survey. The fake review issue is portrayed as abinary classification problem since it utilizes two common classification algorithms and various methodologies for depicting the content.
+
+2.1.2	Deviations among Rating-Based Detection
+
+This strategy recognizes fake reviews by producing a rating dependent on the product of the review and contrasting it with the predefined rating to spot deviations. It can likewise incorporate naming reviews as fake in the event that they have anomaly evaluations. 
+
+2.1.3	Review Content along with User Behaviour-Based Detection
+
+This technique includes registering a rating based on the content of the review and contrasting it with the predefined rating to uncover varieties. It can likewise incorporate marking reviews as fake in the event that they have uncommonly high evaluations(Chaudhary et al., 2018).
+
+2.2	Detection Techniques for Fake Reviews 
+
+As previously stated, the goal of fake review recognition is to provide a system that can fully integrate all legitimate data about reviews and reviewers in order to accurately distinguish fake reviews.This research solves the problem of fake reviews by using  machine learning technology. As an output, the classification models took the reviews and reviewer's qualities as inputs and produced a label for each review indicating whether it was truthful or not (Karumanchi et al., 2018).
+
+2.3	Machine Learning	
+
+Machine Learning is a part of artificial intelligence which uses computerized reasoning to empower machines to achieve complex assignments. The foundation of insightful programming used to produce machine knowledge is factual learning strategies. Since AI calculations require information to learn, the field should be connected to information science (Mohammed et al., 2017).	
+
+To put it another way, machine learning is the progress of computations that enable a machine to learn and execute tasks and exercises. Machine learning incorporates measurements from a variety of perspectives. Several AI-related tactics and systems were developed during this time period (Jakkula, n.d.).
+
+Computer systems may learn directly from examples, data, and experience using machine learning. Machine Learning, or ML for short, has proven to be to be perhaps the most game-changing innovative leap forwards of the last decade (Jatana, 2019).
+
+2.4	Types of Learning
+
+The figure below shows different machine learning algorithms that will be explained briefly in this study.
+
+
+
+Figure 2.1: Types of machine learning(Jakkula, n.d.)
+
+2.4.1	Supervised Learning
+
+The labelled training data is used in supervised learning to infer a function or mapping. A label or tag input X and a label or tag output Y make up the training data. The input example from input vector X is the explanation of a label or tag from vector Y. When they're all put together, they create a great training example. Training data is made up of training examples, to put it another way, if there is no labeling for X, it is considered unlabeled data. Each training session's labels are stored in the Y output vector (Mohammed et al., 2017). 
+
+The supervisor provides these labels for the output vector. Humans are usually used as supervisors however machines can also be used. can also be utilized to label items. Human judgements are significantly more costly than machine judgments, yet the greater rate of error in machine-labelled data show that human judgment is preferable. The data that has been manually labelled for supervised learning is a significant and dependable resource. Machines can, however, be utilized for reliable labelling in some instances(Mohammed et al., 2017).
+
+2.4.2	Unsupervised Learning
+
+There are no supervisors or training data in unsupervised learning. The purpose is to determine a hidden pattern in this data. The lack of a label on the data can be due to a number of factors. It could be due to a lack of funds to cover the cost of manual labelling or it could be due to the data's inherent nature. Data is now captured at an unparalleled rate thanks to a plethora of data collection devices. The dimensions in which Big Data is observed and appraised are variety, velocity, and volume. It is critical to extract information from this data without the supervision of a supervisor. This is today's machine learning practitioner's challenge(Jatana, 2019).
+
+2.4.3 	Semi-Supervised Learning
+
+The given data which is a blend of classified and unclassified data is used in this form of learning. To construct an appropriate data classification model, this combination of labelled and unlabelled data is used. In most circumstances, labelled data is few, whereas unlabelled data is plentiful. The goal of semi-supervised classification is to develop a model that can predict future test data classes more accuratelythan a model created only from labelled data (Dhinesh & Raj, 2017).
+
+2.4.4	Reinforced Learning
+
+Based on observations obtained through interactions with the environment, the reinforcement learning method tries to adopt behaviours that maximize reward or decrease risk(Jatana, 2019).
+
+To create clever programs, reinforcement learning goes through the following steps:
+
+The agent observes the status of the input. 
+
+The agent's actions are guided by the decision-making function.
+
+After completing the activity, the agent is rewarded or reinforced by the environment.
+
+2.5	Machine Learning Models 
+
+Machine Learning is a term used to describe an analytic process that identifies data patterns and correlations between data variables. Additionally, given that complex input variables are expected, machine learning has the ability to analyse complicated non-linear relationships. Many machine learning models, including as classification, clustering, and association rules mining, can be used to analyse data, based on the suitability of data collection and the goals of the data analysis process (Rustam et al., 2020).
+
+Machine Learning outperforms traditional statistical analysis by focusing on predicted performance rather than verifiable theoretical qualities and a priori super-population assumptions. Machine Learning techniques are used to uncover data models or patterns, and they are beneficial in decision-making (Osisanwo et al., 2017). For extracting hidden knowledge from large amounts of data, a variety of data mining techniques are used. Machine learning models include decision trees, neural networks, Bayesian classifiers, support vector machines, random forests, logistic regression, linear discriminant analysis, and multiple regression (Peer et al., 2020).
+
+2.5.1	Decision Tree
+
+One prominent tool for prediction and decision-making is the Decision Tree, which is a flow-chart-like tree structure. Most researchers utilize Decision Tree to identify little or large data structures and predict value because of its simplicity and comprehensibility. Decision tree classifiers are used in data mining to build trees based on the training set, which will be used to generate predictions (Nasteski, 2018). One of the most admired and important technologies for classification are decision tree classifiers. A tree-like structure is common in decision tree classifiers, with root attributes at the top and leaf nodes at the bottom. It also has a number of branches with various characteristics, with each branch's leaf node indicating a class or type of class distribution. Decision tree algorithms illustrate the relationship between quality and the relative relevance of traits(Jatana, 2019).
+
+2.5.2	Artificial Neural Network 
+
+One of the most often utilized tools in educational data mining is the Artificial Neural Network (ANN). Signals are received by the neural network via synapses in the dendrites. In general, An Artificial Neural Network is made up of weight, a mathematical function and input that govern the neuron's activity to produce an output. A neural network has the advantage of discovering all possible interactions between predictor variables (Ashour, 2017). Even in complex nonlinear relationships between dependent and independent variables, a neural network might perform a comprehensive detection without any uncertainty.
+
+2.5.3	Logistic Regression 
+
+Another machine learning method is logistic regression, which is used to determine the impact of one or more independent variables (x) on a single binary dependent variable (y) (Dharani et al., 2021). The dependent variable is a dummy variable with only two possible answers: yes or no, 1 or 0. The dependant variable is a dummy variable that only has two options: yes or no, 1 or 0. Variables from the criterion are used.
+
+2.5.4	Naive BAYES 
+
+The Naive Bayes method is a simple probabilistic classifier that uses the Bayes theorem and strong and naive independence assumptions to classify data. Naive Bayes is one of the most successful and efficient inductive learning algorithms for machine learning and data mining (Bansode et al., 2021).
+
+2.5.5	 Support Vector Machine
+
+In machine learning, a Support Vector Machine is a classification method for both linear and non-linear data. The SVM algorithm's operation is based on locating the hyper plane that divides multidimensional data into classes. One of the most often used classification techniques for detecting fake reviews is SVM(Le, 2020).
+
+Support Vector Machines are a category of supervised classification and regression learning algorithms.They are members of the generalized linear classifier family. Support Vector Machine (SVM) is a classification and regression prediction tool that employs machine learning theory to maximize forecast accuracy while avoiding over-fitting to the data. Support Vector Machines are systems that use the hypothesis space of linear functions in a high-dimensional feature space and are taught with an optimization theory-based learning algorithm that incorporates a statistical learning theory-based learning bias(Jakkula, n.d.).
+
+
+
+Figure 2.2 Support Vector Machine(Jakkula, n.d.)
+
+2.6	Optimization Algorithms
+
+In its most basic form, an optimization can be thought of as a problem of minimization or maximization. To take on the optimization problem, you'll need to use effective search or optimization approaches. There are numerous optimization algorithms that can be categorized in a variety of ways based on their emphasis and characteristics (X. S. Yang & Deb, 2010).
+
+Optimization algorithms are techniques and strategies for addressing optimization problems with the purpose of achieving optimality, which is not always possible. The difficulty of identifying optimality is exacerbated by the fact that uncertainty is virtually always present in real-world systems. As a result, the goal in engineering and production is not just to seek only the best but also the most durable designs (Sinha & Annappa, n.d.).In such cases, suboptimal or good robust solutions are frequently the best options (X. Yang, n.d.)Nature-inspired metaheuristic algorithms have exploded in popularity during the last two decades.
+
+2.6.1	Particle Swarm Optimization
+
+Particle Swarm Optimization (PSO) was first used to solve nonlinear functions in 1995. It is easier to use than other evolutionary techniques because it simply requires a problem formulation and a few parameters to solve. PSO is a self-adaptive, stochastic optimization technique based on population.The PSO starts by generating and assigning initial velocities to the particles. It determines the optimal function value and the best placement by evaluating the objective function at each particle position. It determines new velocities based on the existing velocity, the best locations of the particles individually, and the best locations of their neighbours. It then iteratively updates particle positions, velocities, and neighbours (the new location is the previous one plus the velocity, tweaked to keep particles within boundaries). Iterations continue until the algorithm hits a threshold for halting (Jain et al., 2018).
+
+2.6.2	Genetic Algorithm
+
+Genetic algorithms are commonly used for machine learning, problem optimization, and a variety of other applications. Optimization is a method for making something better than it was before. In optimization, some sets of input are provided, and the output is calculated based on the input. The use of a genetic algorithm to find a shorter path by encoding it in a graph and translating it to chromosomes is very useful. 
+
+Genetic Algorithms (GAs) are primarily search-based algorithms based on natural selection and heredity notions. GA is a subset of a much larger category of computation known as evolutionary computation. In GAs, we have a large and diverse set of options for a particular problem.The generated solutions are then subjected to recombination and mutation. The procedure is repeated for multiple generations, resulting in the birth of new offspring. Individuals who are more fit have a higher likelihood of marrying and creating more Fit individuals since their fitness worth is based on the value of their objective function. This process ensures that future generations will have fitter persons or better solutions, and it will continue until it reaches the end destination criterion (Lambora et al., 2019).
+
+2.7	Metaheuristic Algorithms
+
+Metaheuristic optimization is concerned with the use of metaheuristic techniques to solve optimization issues. In 1986, Fred Glover invented the term "metaheuristic" to describe a heuristic procedure that has no problem-specific characteristics. The harmonization of two search schemas, exploration (diversification) and exploitation, is the reason behind metaheuristic's robust searching mechanism (intensification). The first, exploration, is in charge of looking for the best solution in the surrounding locations, whereas the second, exploitation, is in charge of invading new searching areas(Abdel-basset et al., 2018).
+
+Meta- stands for "beyond" or "higher level" in metaheuristic algorithms. They outperform simple heuristics in most cases. Local search and global exploration are used in all metaheuristic algorithms in some way. Randomization is frequently used to achieve variety of solutions. Despite the prevalence of metaheuristics, the literature lacks an agreed-upon definition of heuristics and metaheuristics. Some researchers interchange the terms "heuristics" and "metaheuristics." (Gandomi et al., 2013).
+
+Nature often inspires metaheuristic algorithms, which are now among the most widely used optimization techniques. In comparison to typical algorithms, they have a variety of advantages. Metaheuristic algorithms include genetic algorithms, simulated annealing, differential evolution, ant and bee algorithms, bat algorithms, particle swarm optimization, harmony search, firefly algorithms, flower pollination algorithms, and cuckoo search, among others.
+
+2.8	Desired Algorithm
+
+The proposed algorithm for this study is a meta-heuristic algorithm. Meta-heuristic methods are higher-level heuristic approaches that assist the search process by using information and solution selection.For this study, Optimised Cuckoo Search Algorithm is proposed. Cuckoo search algorithm is an algorithm that is inspired by the nature of the cuckoo species.
+
+2.8.1	Cuckoo Parasitic Bird Behaviour
+
+It has a remarkable grasp on the art of deceit. Permeation is its method, in which it steals one of the host's eggs and substitutes it with one of her own. It then precisely matches its egg to the host's egg by replicating the design and colour, a skill that requires incredible accuracy to ensure success. Egg-laying timing is also a fantastic way to choose the nest where the host bird has just laid an egg (Kumar et al., 2019). 
+
+After a while, this method will pay off: the cuckoo egg will hatch before the host eggs, and the host's first response will be to blind shove its own eggs out of the nest, boosting the care and food provided for the cuckoo's young. The chicks inherit cunning, which they display when they imitate the call of the host chicks to get access to more food opportunities. In the event that the host identifies the cuckoo's egg in its nest, they will either throw it out or abandon their own nest and establish a new one. As a result, the cuckoo must become more accurate in imitating the host eggs, while the host must enhance its abilities(Technology, 2017).
+
+
+
+
+
+
+
+
+
+
+
+
+
+Figure 2.3: Cuckoo bird(Wang, 2018)
+
+2.8.2	Cuckoo Search Algorithm
+
+Cuckoo search (CS), created by Xin-She Yang and Suash Deb in 2009, is one of the most recent nature-inspired efficient metaheuristic algorithms. Cuckoo Search is based on some cuckoo species' brood parasitism. This technique is also enhanced by a phenomenon known as the Levy flight, rather than a conventional isotropic random walk.According to recent research, CS has the potential to be significantly more efficient than PSO and genetic algorithms (Gandomi et al., 2013).
+
+The Cuckoo Search algorithm (CS) can locate sources both locally and internationally. In compared to other metaheuristic algorithms, According to multiple research findings, Cuckoo Search is more generic and robust for many optimization tasks.The Cuckoo Search Algorithm has the advantage of using fewer control parameters than other optimization algorithms(Technology, 2017). The main objective of Cuckoo Search is to provide the new and best optimal solutions that will come over worst solution in the current nest population.
+
+Cuckoo Search works as follows: 
+
+Every available egg in a nest is a solution. Every nest can have A set of solutions is represented by more than one egg.
+
+The best quality of solutions is calculated with objective function of problem. Generally, the objective function is needed to be maximized. 
+
+The host nest is fixed or limited. So host birds may find or discover their eggs with probability 0 and 1. It means probability that determine when the worst case is replaced with new one. 
+
+In iteration, each nest represents a solution. The best nest is conserved, while the worst nests are replaced by a new nest with a potentially better solution (Sinha & Annappa, n.d.).  To generate a new solution, Levy flight is performed according to Eq. (2.1)
+
+						(2.1)
+
+Levy flight by random walk gives more efficient results. Cuckoo Search provides a globally optimal solution due to randomization and the fact that it is not locked in local search. To set itself apart from the other birds, the cuckoo lays its eggs in a unique method. Simply expressed, there is always the possibility that the cuckoo egg will be discovered by the host. The consequence of discovering an egg and having it thrown away or abandoned is approximated by a fraction of px of the n host nests being replaced by new nests.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Figure 2.4: Cuckoo Behaviour (Technology, 2017)
+
+2.9	Review of Related Work
+
+Many researchers have studied review content, emotional variety, and user behaviour analysis, as well as training models for classification, to detect fake reviews.It is dishonest and manipulative to rely on fake reviews and ratings to support products on websites in order to increase their reputation and sales. This is an increasingly crucial topic, necessitating the employment of a fake review detector.
+
+In a recent study, a method was proposed byElmurngi & Gherbi, (2018)Using the ‘Weka tool,' an open source software tool for developing machine learning methods, sentiment analysis applying three separate categories of positive, negative, and neutral terms, identify fair and unfair reviews from Amazon reviews. In this research work, Spam reviews are discovered by considering only the helpfulness votes cast by customers, as well as the rating variation, which limits the system's overall performance.Furthermore, the existing system uses a Naive Bayes classifier for spam and non-spam categorization, which has a low accuracy and may not deliver reliable results for the user, according to the researcher's observations and experimental results.
+
+Shelke and Deshmukh (2020) studied, discovered, and detected false reviews of electronic devices in a dataset pertaining to various US cities.LIWC, sentiment analysis, POS, and subjectivity were all examined as feature extraction techniques. These methods were used to extract authenticity, analytic thinking, polarity, objective, subjective, adjective, verb, noun, and adverb counts from the review text. The discriminative and highest characteristics were chosen using IG (Information Gain). Three different supervised machine-learning techniques were used to classify the reviews as fake or trustworthy: Decision tree, Random forest, and adaptive boosting, with accuracy rates of 96 %, 94%, and 97%, respectively.
+
+According to Chaudhary et al., (2018), Credibility is a multi-dimensional quality that is perceived by the recipient of information. The source of information, the information itself, in terms of structure and substance, and the means used to convey it all have different characteristics. When these characteristics are addressed in terms of credibility, it has been demonstrated that the impact of the distribution medium can alter people's opinions of information sources and information itself. As a result, one critical point that has to be addressed now is if new media in the digital arena introduces new factors that could influence credibility judgment.
+
+Karumanchi et al., (2018) proposed a review spam detection methodusing tensor decomposition. The above research work, which was based on datasets from other sites, has significant drawbacks.They found that the real users tend to review the products, but the spammers are not restricted to the geographical location, i.e. they may come from anywhere. In the case of the Yelp datasets, however, this was not true. Here they found that 72% of the Yelp’s review spam is posted from areas in and around restaurants compared to 64% of the authentic reviews. It takes a fresh look at the spam detection problem. They discovered that review sentiment is one of the most important aspects influencing review ratings, and that it has to be researched further for accurate prediction.
+
+Bansode et al.,(2021)intended to determine if a review is fake or real. The classifiers used in this work are Naïve Bayes Classifier, Logistic Regression and SVM. In the present circumstances, consumers are considerably more reliant on making decisions to buy things from either ecommerce websites or retail stores. As a result, remarks can be hazardous to an item's profitability.Comments are exploited for true or false views. Fake or dishonest remarks, misleading reviews, or incorrect feedbacks are all examples of distorted comments.Compared to other machine learning models used, SVM gave a higher accuracy of 77.81%.
+
+Jiang et al.,(2016)for real-time position estimation, a hybrid technique based on Cuckoo Search-based Support Vector Machine (CS-SVM) was proposed. The Wi-Fi RSSI fingerprint dataset with seven classes from the UCI repository is used for simulation. With K-nearest neighbour (KNN) and support vector machine, the suggested model is simulated in MATLAB and assessed in terms of accuracy, precision, and recall (SVM). Furthermore, simulation results show that the proposed model has 99.87 % accuracy.
+
+Barbado et al.,(2020)recommends a functionality system to identify fake feedback measured in the consumer products sector. The impact of online feedback on organizations has changed considerably in recent years, with businesses ranging from restaurants to e-commerce using it to analyse operational effectiveness. Unfortunately, some customers use illicit ways to increase their online credibility by providing fraudulent comments about their companies or competitors. In a previous study, the detection of fraudulent comments in a range of areas, such as customer evaluations or market insight in hotels and restaurants, was assessed.Despite the economic significance, moreover, the area of customer electronics companies has still not been explored in detail.
+
+Xing et al., (2018)used Support Vector Machine (SVM) to anticipate mean monthly runoff, which is at the forefront of current research due to its excellent accuracy. To determine the SVM parameters (kernel parameter () and penalty parameter (C), the cuckoo search (CS) method was used. Artificial Neural Networks were used to model the data sets (ANN). The findings reveal that the proposed model (cuckoo search based SVM) is more accurate than ANN.
+
+Data mining was used to detect fake reviews by Forhad Hossain, a student at Missouri State University in 2019. Using various data mining tools, the study attempted to solve the problem of identifying reviews that had been purposefully modified to deceive users. Support Vector Machine, Multinomial Nave Bayes, and Multilayer Perceptron were their first approaches. All of these algorithms performed well, with an accuracy of more than 86%, but SVM outperformed them all, with an accuracy of more than 90%.
+
+
+
+
+
+
+
+
+
+CHAPTER THREE
+
+METHODS AND MATERIALS
+
+3.1	Introduction
+
+This chapter gives a descriptionof methods and techniques used in carrying out this research. The classification model is optimized using Cuckoo search optimization algorithm.
+
+3.2	Proposed Solution 
+
+This project proposes to identify fake reviews by classifying them as fake or real in order to solve the major problem that online E-commerce sites face as a result of fake reviews. The method attempts to classify reviews obtained from Amazon.com datasets that are freely available. Based on the detected features, a classifier is designed. And, depending on the categorized training sets, those traits are assigned a likelihood component or a weight. This is a supervised learning strategy that uses a variety of machine learning algorithms to identify whether or not a review is fraudulent.
+
+3.3	Classifying Fake Reviews
+
+Classification is the process of categorizing or classifying items in a collection. The goal of classification is to correctly predict the target class for each data occurrence. Each piece of data in the review file is assigned a weight and classified into one of two categories: Fake or Genuine. There are a number of optimization algorithms that can be classed in different ways depending on their purpose and qualities.
+
+3.4	System Architecture
+
+The system architecture is a conceptual model that depicts the structural and behavioral representation of a proposed system. The design process produces the system architecture. A model diagram, as shown in Figure 3.1, is used to represent it.
+
+
+
+
+
+
+
+Figure 3.1: Architecture flow of proposed algorithm
+
+The proposed system architecture aims to buildan effective model for fake review detection. The foremost step here is to collect customer review dataset from Amazon.com. The dataset needs to be checked for fake or real. The collected data is subjected to pre-processing. In pre-processing unwanted words are removed and keywords are extracted. SVM is used to determine whether a review is false or true.
+
+3.4.1	Data Collection 
+
+Consumer review data collection, raw review data was collected from Amazon.com. This was done in order to widen the scope of the review data.
+
+3.4.2	Data Pre-Processing
+
+Data processing is the removal of duplicate and irrelevant data from the review dataset, as well as noisy and inaccurate dataand processing and refining the data. The following are steps involved in data pre-processing:
+
+Step 1: Tokenization of sentences is the first step
+
+The complete review is given as input, and the NLTK software is used to tokenize it into sentences. 
+
+Step 2: Punctuation marks must be removed
+
+Punctuation marks at the beginning and conclusion of the evaluations, as well as additional white space, are eliminated. 
+
+Step 3: Tokenization of words 
+
+To make retrieval easier, each review is tokenized into words and preserved in a list.
+
+Step 4: Eliminate any stop words
+
+The affixes on the stem are removed. For example, the stem of "cooking" is "cook," and the stemming algorithm is aware of this.
+
+3.5	Data Cleaning
+
+Some of the enhancements that must be made to the dataset are stop word removal, tokenization, lower casing, sentence segmentation, and punctuation removal. The size of the genuine data can be lowered by deleting irrelevant (outliers) and redundant data.Data cleaning is the process of repairing, restoring, or eliminating incorrect or irrelevant data from a data set. Dating cleansing is the most important stage of pre-processing since it assures that your data is ready for downstream use. During data cleaning, all discrepancies detected during your data quality review will be addressed.
+
+3.6	Supervised Classification
+
+The classifier was designed to see how different characteristics and groups of features affect classification and overall performance. This is a crucial element of the research since it demonstrates the impact of various types of characteristics on a large-scale dataset. Support Vector Machine is the classifier that will be used. 
+
+3.6.1	Support Vector Machine 
+
+SVM is a supervised classification and regression technique that evaluates new data by using previously trained data. Supervised vector classification is used to determine the hyper plane that will categorize the training vectors. SVM can also be used to classify data.
+
+3.7	Proposed Algorithm
+
+The optimized Cuckoo Search-Support Vector Machine is the proposed algorithm for this study (CS-SVM). A basic description of the suggested algorithm is given below.
+
+Cuckoo Search Algorithm
+
+The CS algorithm is applied to optimize the SVM parameters and the algorithm is described below:
+
+For the cuckoo search method, set the number of nests, N, the probability parameters, Pa, and the maximum iterations, tmax. 
+
+At random, create nest placements. A set of parameters is assigned to each nest. 
+
+Determine each nest's fitness value, find the current best solution, and note the minimal fitness value and its corresponding location. 
+
+Keep the best solutions from the previous generation and move the other nests around.
+
+Set the possibility of egg detection to a random integer. Move the nest around at random to get a new set of positions. 
+
+Determine the optimal nesting location. Stop searching and output the best position to retrieve the best parameter value when the maximum iteration limit is reached; otherwise, return to Step 3.
+
+3.7.2	Cuckoo Search Pseudocode
+
+
+
+
+
+Start 
+
+Objective function f(x), X = (X1, X2, …, Xd) T
+
+Generate initial population of n host Nests Xi (i = 1, 2………n) 
+
+While (t <Max_Generation) or (stop criteria) 
+
+Get a cuckoo randomly by Levy flights 
+
+Evaluate its quality/fitness Fi 
+
+Choose a nest among n (say, j) randomly 
+
+If (Fj < Fi)), 
+
+Change j by the new possible solution;
+
+End 
+
+A fraction (Pa) of worse nests are abandoned and new ones are built; 
+
+Keep the best solutions (or nests with quality solutions); 
+
+find the current best by using Rank the solutions 
+
+End While 
+
+Results Post process and Visualization
+
+Activity End 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The following are some reasons why Cuckoo Search algorithm is selected for this study:
+
+It uses fewer parameters than any other metaheuristic approaches.
+
+ It is able to maintain balance between local and global random walks.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Figure 3.2: Flowchart of Cuckoo Search Algorithm
+
+
+
+
+
+
+
+Technologies
+
+MATLAB
+
+MATLAB is a programming language used by engineers and scientists to analyse data, develop algorithms, and generate models. The environment combines a desktop interface built for iterative research and design processes with a programming language that has native support for matrix and array mathematics. It comes with the Live Editor, which allows you to develop scripts that mix code, output, and formatted text into a new executable notebook.The following are some of the benefits of using the MATLAB environment:
+
+Professionally designed, fully documented, and thoroughly tested: MATLAB toolboxes are professionally developed, extensively documented, and rigorously tested. 
+
+Interactivity: You can use MATLAB programs to see how different methods work with your data. Iterate until you get the results you want, and then develop a MATLAB program to automate or reproduce your work. 
+
+Scalability: With very modest code changes, an analysis may be scaled to execute on clusters, GPUs, and clouds. There's no need to change your code or learn new abilities like big data or out-of-memory computing.
+
+Microsoft Excel
+
+Microsoft for Windows, macOS, Android, and iOS that includes calculators, graphing tools, and pivot tables. Visual Basic for Applications, a macro programming language, is included, as are calculators, graphing tools, and pivot tables (VBA). Since version 5 in 1993, it has surpassed Lotus 1-2-3 as the most widely used spreadsheet for these systems, and it has overtaken Lotus 1-2-3 as the industry standard for spreadsheets. Excel is an application that comes as part of the Microsoft Office suite.Microsoft Excel are just a few of the tools available. To manage data manipulations such as mathematical calculations, Microsoft Excel, like all spreadsheets, uses a grid of cells arranged in numbered rows and letter-named columns. It has a number of built-in features that can assist with statistical, technical, and financial challenges. It allows data to be sectioned to see how it is affected by various elements from multiple perspectives.
+
+3.9	Performance Metrics	
+
+Classification Report
+
+Precision, Recall, F1, and Support scores are included in this report. The following are the explanations: 
+
+Precision: Precision refers to the number of correct documents returned by our ML model. A confusion matrix and the formula below can be used to figure it out:
+
+
+
+Recall or Sensitivity:The number of positives returned by our Machine Learning model is known as recall. With the aid of the following formula, Confusion Matrix may easily compute it:
+
+
+
+F1 Score: The harmonic mean of precision and memory in this score. The F1 score is the weighted average of precision and recall in mathematics. F1 has a value of 1 at its highest point and a value of 0 at its lowest point. The F1 score can be calculated using the formula below:
+
+
+
+3.9.2	Classification Accuracy	
+
+It is the most widely used metric for evaluating classification algorithms. It's the ratio of correct guesses to total forecasts. It's easy to figure out with the use of a confusion matrix and the following formula:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CHAPTER FOUR
+
+RESULTS AND DISCUSSION
+
+4.1	Introduction
+
+In this paper, the dataset is taken from Amazon.com for software product reviews. The dataset contains contents and sentiments scores of customer reviews. In the experiment, we have performed classification analysis of the data using Support Vector Machine in MATLAB and compared it with optimized Cuckoo Search Support Vector Machine. The sentiment analysis is done over a different number of reviews and tried to define the sentiment scores linked with the data. Here, the analysis is carried out on the first 200 customer reviews and classified them into either of Positive or Negative category.
+
+4.2	Experimental Results
+
+4.2.1	 Experiment 1
+
+The model is implemented using SVM for review classification as either True or False. The model is tested on review datasets gotten from Amazon.com. The result obtained from 5 runs for each datasets of five SVM types is presented in the table 4.1 and table 4.2. The graph plot of SVM type against accuracy is presented in Figure 4.1 and 4.2.
+
+Table 4.1	Software Product Review Dataset1
+
+Iteration
+
+SVM type
+
+Accuracy %
+
+1
+
+Linear SVM
+
+49.4
+
+2
+
+Quadratic SVM
+
+49.2
+
+3
+
+Cubic SVM
+
+49.0
+
+4
+
+Fine Guassian SVM
+
+43.1
+
+5
+
+Median Gaussian SVM
+
+47.0
+
+
+
+
+
+Figure 4.1: SVM classification accuracy graph for Dataset1
+
+Table 4.2	Software Product Review Dataset2
+
+Iteration
+
+SVM type
+
+Accuracy %
+
+1
+
+Linear SVM
+
+49.3
+
+2
+
+Quadratic SVM
+
+50.5
+
+3
+
+Cubic SVM
+
+49.7
+
+4
+
+Fine Guassian SVM
+
+43.1
+
+5
+
+Median Gaussian SVM
+
+47.0
+
+
+
+
+
+Figure 4.2: SVM classification accuracy graph for Dataset2
+
+4.2.2	 Experiment II
+
+The model is then trained using optimized Cuckoo Search Support Vector Machine for reviews classification as either True or False. The model is tested on reviews datasets gotten from Amazon.com. The results obtained from five iterations of the CS SVM of the datasets are presented in the table below.
+
+Table 4.3
+
+No of Iteration
+
+Accuracy %
+
+1
+
+0.75989
+
+2
+
+0.75989
+
+3
+
+0.76037
+
+4
+
+0.76255
+
+5
+
+0.76255
+
+6
+
+0.76302
+
+7
+
+0.76302
+
+8
+
+0.76302
+
+9
+
+0.76302
+
+10
+
+0.76302
+
+
+
+
+
+Figure 4.3: Graph of Iteration
+
+Table 4.4
+
+No. of Iteration
+
+Accuracy (%)
+
+1
+
+0.76035
+
+2
+
+0.7604
+
+3
+
+0.76081
+
+4
+
+0.76255
+
+5
+
+0.76255
+
+6
+
+0.76256
+
+7
+
+0.76256
+
+8
+
+0.76256
+
+9
+
+0.76302
+
+10
+
+0.76302
+
+
+
+
+
+Figure 4.4: Graph of SVM Accuracy
+
+4.3	Discussion
+
+The Machine learning based algorithm is developed using MATLAB in HP Chromebook PC with intel core 10th gen 1.19 GHz processor with 12 GB of RAM. The parameters for CS were set as follows: number of nests 30 and the maximum number of iterations is 100. The results obtained from the simulation experiments after the first 10 iterations show that the proposed optimized Cuckoo Search Support Vector Machine model returned a better accuracy score for both datasets which indicates that the CS is an effective method for parameter optimization.
+
+CHAPTER FIVE
+
+CONCLUSIONS AND RECOMENDATIONS
+
+5.1	Conclusions
+
+The aim of the research was to use a machine learning detection model that used features from the Support Vector Machine and the Cuckoo Search Algorithm to detect fake reviews. This was accomplished by utilizing SVM as a classifier to accept a dataset of product reviews as input and determine whether they were true or false as an output. The model's performance was compared to that of other SVM classifiers, with the CS SVM providing a greater level of accuracy than the other SVM classifiers. The results of this study's experiments imply that the proposed algorithm has a higher level of accuracy than previous machine learning algorithms.
+
+5.2 	Contribution to Knowledge
+
+The contribution of this thesis is in two folds:
+
+The proposed model demonstrated the use of machine learning to increase trust for product review on the internet. 
+
+Performance evaluation demonstrated on product review dataset. 
+
+5.3	Recommendations 
+
+Based on the results obtained from this study, the following recommendations were made:
+
+Developers can further use this model by integrating in their website for customer to evaluate whether their reviews on a particular product is true or false.
+
+Test with different data sets and make rigorous performance comparisons with other classifiers.  
+
+A fast processor is recommended due to the time taken for the model to iterate its result.
+
+REFERENCES
+
+Abdel-basset, M., Abdel-fatah, L., & Sangaiah, A. K. (2018). Chapter 10 - Metaheuristic Algorithms: A Comprehensive Review. In Computational Intelligence for Multimedia Big Data on the Cloud with Engineering Applications. Elsevier Inc. https://doi.org/10.1016/B978-0-12-813314-9.00010-4
+
+Ahmad, A. R., & Murad, H. R. (2020). The impact of social media on panic during the COVID-19 pandemic in iraqi kurdistan: Online questionnaire study. Journal of Medical Internet Research, 22(5), 1–20. https://doi.org/10.2196/19556
+
+Ashour, A. S. (2017). Application of cuckoo search in water quality prediction using artificial neural network Sankhadeep Chatterjee * Sarbartha Sarkar Nilanjan Dey Aboul Ella Hassanien. 6.
+
+Bansode, M., Pardeshi, S., Ovhal, S., Shinde, P., & Birajdar, A. (2021). Fake Review Prediction and Review Analysis. 7, 143–151. https://doi.org/10.35940/ijitee.G9042.0510721
+
+Barbado, R., Araque, O., & Iglesias, C. A. (2020). A Framework for Fake Review Detection in Online Consumer Electronics Retailers. March 2019. https://doi.org/10.1016/j.ipm.2019.03.002
+
+Chaudhary, P., Tyagi, A., Mishra, S., & Consulting, V. P. (2018). Fake Review Detection through Supervised Classification 1 1 1. 417–427.
+
+Chowdhary, N. S. (2018). Fake Review Detection using Classification. 180(50), 16–21.
+
+Dharani, N. P., Bojja, P., & Raja Kumari, P. (2021). Evaluation of performance of an LR and SVR models to predict COVID-19 pandemic. Materials Today: Proceedings, xxxx. https://doi.org/10.1016/j.matpr.2021.02.166
+
+Dhinesh, D. B., & Raj, E. D. (2017). Flocking based evolutionary computation strategy for measuring centrality of online social networks. Applied Soft Computing Journal, 58, 495–516. https://doi.org/10.1016/j.asoc.2017.04.047
+
+Elmogy, A. M., Tariq, U., & Ibrahim, A. (2021). Fake Reviews Detection using Supervised Machine Learning. 12(1), 601–606.
+
+Elmurngi, E. I., & Gherbi, A. (2018). Unfair Reviews Detection on Amazon Reviews using Sentiment Analysis with Supervised Learning Techniques. June. https://doi.org/10.3844/jcssp.2018.714.726
+
+Gandomi, A. H., Yang, X., Talatahari, S., & Alavi, A. H. (2013). Metaheuristic Algorithms in Modeling and Optimization (Issue December). https://doi.org/10.1016/B978-0-12-398364-0.00001-2
+
+He, S., Hollenbeck, B., & Proserpio, D. (2021). The Market for Fake Reviews.
+
+Hossain, F. (2019). Fake Review Detection using Data Mining.
+
+Jain, N. K., Nangia, U., & Jain, J. (2018). A Review of Particle Swarm Optimization. Journal of The Institution of Engineers (India): Series B, 99(4), 407–411. https://doi.org/10.1007/s40031-018-0323-y
+
+Jakkula, V. (n.d.). Tutorial on Support Vector Machine ( SVM ).
+
+Jatana, V. (2019). Machine Learning Algorithms. May, 2–5. https://doi.org/10.13140/RG.2.2.20559.92329
+
+Jiang, M., Luo, J., Jiang, D., Xiong, J., Song, H., & Member, S. (2016). A Cuckoo Search-Support Vector Machine Model for Predicting Dynamic Measurement Errors of Sensors. August. https://doi.org/10.1109/ACCESS.2016.2605041
+
+Journal, I. (n.d.). IRJET-Fake Review Detection using Opinion Mining.
+
+Karumanchi, A., Fu, L., & Deng, J. (2018). Prediction of Review Sentiment and Detection of Fake Reviews in Social Media. Proceedings of the International Conference on Information and Knowledge Engineering (IKE), 181–186. https://csce.ucmss.com/cr/books/2018/LFS/CSREA2018/IKE4299.pdf
+
+Kumar, A., Jaiswal, A., Garg, S., Verma, S., & Kumar, S. (2019). Sentiment Analysis Using Cuckoo Search for Optimized Feature Selection on Kaggle Tweets. 9(1), 1–15. https://doi.org/10.4018/IJIRR.2019010101
+
+Lambora, A., Gupta, K., & Chopra, K. (2019). Genetic Algorithm- A Literature Review. Proceedings of the International Conference on Machine Learning, Big Data, Cloud and Parallel Computing: Trends, Prespectives and Prospects, COMITCon 2019, 1998, 380–384. https://doi.org/10.1109/COMITCon.2019.8862255
+
+Le, H. (2020). DETECTION OF FAKE REVIEWS ON SOCIAL MEDIA USING MACHINE. 21(1), 185–194.
+
+Maryville University. (2020). The Evolution of Social Media: How Did It Begin and Where Could It Go Next? Maryville University. https://online.maryville.edu/blog/evolution-social-media/
+
+Mohammed, M., Bashier, E., Bashier, M., & Group, F. (2017). Algorithms and Applications (Vol. 7, Issue 13).
+
+Nasteski, V. (2018). An overview of the supervised machine learning methods An overview of the supervised machine learning methods. December. https://doi.org/10.20544/HORIZONS.B.04.1.17.P05
+
+Osisanwo, F. Y., Akinsola, J. E. T., Awodele, O., Hinmikaiye, J. O., Olakanmi, O., & Akinjobi, J. (2017). Supervised Machine Learning Algorithms : Classification and Comparison. June. https://doi.org/10.14445/22312803/IJCTT-V48P126
+
+Peer, S., Journals, R., & Publishing, B. (2020). Using Machine Learning Algorithms to Predict Students ’ Performance and Improve Learning Outcome : A Literature Based Review Francis Ofori , Dr . Elizaphan Maina and Dr . Rhoda Gitonga ISSN : 2617-3573 Using Machine Learning Algorithms to Predict Students. 4(1), 33–55.
+
+Rustam, F., Reshi, A. A., & Mehmood, A. (2020). COVID-19 Future Forecasting Using Supervised Machine Learning Models. 8, 101489–101499. https://doi.org/10.1109/ACCESS.2020.2997311
+
+Shelke, M. B., & Deshmukh, S. (2020). Fake Reviews Identification Based on Deep Computational Linguistic Features. January.
+
+Sinha, N., & Annappa, B. (n.d.). Cuckoo Search for In fl uence Maximization in Social Networks. 51–61. https://doi.org/10.1007/978-81-322-2529-4
+
+Technology, M. O. F. (2017). Enhanced Cuckoo Search Algorithm on. April.
+
+Vaibhavalakshmi, C. D., & Deepthi, K. (2020). Detection of Fake Reviews in Social Media using Machine Learning Techniques. July, 4285–4291.
+
+Wang, G. (2018). A Comparative Study of Cuckoo Algorithm and Ant Colony Algorithm in Optimal Path Problems. MATEC Web of Conferences, 232. https://doi.org/10.1051/matecconf/201823203003
+
+Xing, B., Wang, Y., Liu, G. D., & Ren, Y. F. (2015). Application of the Cuckoo Search Based SUPPORT Vector Machine for the Mean Monthly Runoff forecasting. Itms.
+
+Yang, X. (n.d.). Cuckoo Search and Firefly Algorithm: Theory and Applications. https://doi.org/10.1007/978-3-319-02141-6
+
+Yang, X. S., & Deb, S. (2010). Engineering optimisation by cuckoo search. International Journal of Mathematical Modelling and Numerical Optimisation, 1(4), 330–343. https://doi.org/10.1504/IJMMNO.2010.035430
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+APPENDIX
+
+% Extended Binary Cuckoo Search (EBCS) algorithm by Sadegh Salesi and Georgina Cosma
+
+% Programmed by Sadegh Salesi at Nottignham Trent University              %
+
+% Last revised:  2017     
+
+% Reference: S. Salesi and G. Cosma, A novel extended binary cuckoo search algorithm for feature selection, 2017 2nd International Conference on Knowledge Engineering and Applications (ICKEA), London, 2017, pp. 6-12.
+
+% https://ieeexplore.ieee.org/document/8169893
+
+% Copyright (c) 2017, Sadegh Salesi and Georgina Cosma. All rights reserved.
+
+% -----------------------------------------------------------------
+
+% The Extended Binary Cuckoo Search algorithm is a modified version of the
+
+% Cuckoo Search (CS) algorithm by Xin-She Yang and Suash Deb found in
+
+% 1) X.-S. Yang, S. Deb, Cuckoo search via Levy flights,
+
+% in: Proc. of World Congress on Nature & Biologically Inspired
+
+% Computing (NaBIC 2009), December 2009, India,
+
+% IEEE Publications, USA,  pp. 210-214 (2009).
+
+% http://arxiv.org/PS_cache/arxiv/pdf/1003/1003.1594v1.pdf 
+
+
+
+function []=cuckoo_search_new(n)
+
+clc,clear,close all
+
+%% parameters
+
+for nrun=1:10
+
+sigma=(gamma(1+beta)*sin(pi*beta/2)/(gamma((1+beta)/2)*beta*2^((beta-1)/2)))^(1/beta);
+
+for j=1:n
+
+    s=nest(j,:);
+
+    % This is a simple way of implementing Levy flights
+
+    % For standard random walks, use step=1;
+
+    %% Levy flights by Mantegna's algorithm
+
+    u=randn(size(s))*sigma;
+
+    v=randn(size(s));
+
+    step=u./abs(v).^(1/beta);
+
+
+
+    % In the next equation, the difference factor (s-best) means that 
+
+    % when the solution is the best solution, it remains unchanged.     
+
+stepsize=1*step.*(s-best);
+
+    % Here the factor 0.01 comes from the fact that L/100 should the typical
+
+    % step size of walks/flights where L is the typical lenghtscale; 
+
+    % otherwise, Levy flights may become too aggresive/efficient, 
+
+    % which makes new solutions (even) jump out side of the design domain 
+
+    % (and thus wasting evaluations).
+
+    % Now the actual random walks or flights
+
+    s=s+stepsize.*randn(size(s));
+
+   % Apply simple bounds/limits
+
+   nest(j,:)=simplebounds(s,Lb,Ub);
+
+end
+
+
+
+%% Find the current best nest
+
+function [fmin,best,nest,fitness,bestacc,accuracy]=get_best_nest(nest,newnest,fitness,X1,Y1,accuracy)
+
+% Evaluating all new solutions
+
+for j=1:size(nest,1)
+
+    if sum(round(newnest(j,:)))>0
+
+          [fnew,acc]=svm(X1,Y1,round(newnest(j,:)));
+
+          if fnew<=fitness(j)
+
+             fitness(j)=fnew;
+
+             accuracy(j,:)=acc;
+
+             nest(j,:)=newnest(j,:);
+
+          end
+
+    else
+
+        fitness(j)=Inf;
+
+    end
+
+end
+
+% Find the current best
+
+[fmin,K]=min(fitness) ;
+
+best=nest(K,:);
+
+bestacc=accuracy(K,:);
+
+
+
+%% Replace some nests by constructing new solutions/nests
+
+function new_nest=empty_nests(nest,Lb,Ub,pa)
+
+% A fraction of worse nests are discovered with a probability pa
+
+n=size(nest,1);
+
+% Discovered or not -- a status vector
+
+K=rand(size(nest))>pa;
+
+
+
+% In the real world, if a cuckoo's egg is very similar to a host's eggs, then 
+
+% this cuckoo's egg is less likely to be discovered, thus the fitness should 
+
+% be related to the difference in solutions.  Therefore, it is a good idea 
+
+% to do a random walk in a biased way with some random step sizes.  
+
+%% New solution by biased/selective random walks
+
+stepsize=rand*(nest(randperm(n),:)-nest(randperm(n),:));
+
+new_nest=nest+stepsize.*K;
+
+for j=1:size(new_nest,1)
+
+    s=new_nest(j,:);
+
+new_nest(j,:)=simplebounds(s,Lb,Ub);  
+
+end
+
+
+
+% Application of simple constraints
+
+function s=simplebounds(s,Lb,Ub)
+
+  % Apply the lower bound
+
+ns_tmp=s;
+
+  I=ns_tmp<Lb;
+
+ns_tmp(I)=Lb(I);
+
+
+
+  % Apply the upper bounds 
+
+  J=ns_tmp>Ub;
+
+ns_tmp(J)=Ub(J);
+
+  % Update this new move 
+
+  s=ns_tmp;
+
+
+
+function [fitness,acc,nfeat]=svm(X,Y,pop)
+
+
+
+FeatIndex = find(pop==1);
+
+trainset = X(:,[FeatIndex]);
+
+trainlabel=Y;
+
+SVMModel=fitcsvm(trainset,trainlabel,'KernelFunction','rbf');
+
+CVSVMModel = crossval(SVMModel);
+
+loss=kfoldLoss(CVSVMModel);
+
+
+
+ntotal_feat=size(X,2);
+
+nfeat=numel(FeatIndex);
+
+acc=1-loss;
+
+fitness=-acc;  %classic fitness function
+
+%fitness=(0.2*(nfeat/ntotal_feat))-0.8*acc; %proposed fitness function
+
+function  mutpop=mutation(pop,nmut,popsize,nvar)
+
+for n=1:nmut
+
+i=randi([1 popsize]);  
+
+j1=randi([1 nvar]);
+
+% j2=randi([j1+1 nvar]);
+
+if pop(i,j1)>=0.5
+
+    pop(i,j1)=0;
+
+else
+
+    pop(i,j1)=1;
+
+end
+
+mutpop=pop;
+
+end
+
+end
+

@@ -1,0 +1,23 @@
+
+
+.member{
+    &:first-child{
+        figure{
+
+            border: 2px solid #000;
+        }
+    
+    }
+    figure {
+        width: 14rem;
+        height: 14rem;
+overflow: hidden;
+
+
+        img{
+object-fit: cover;
+object-position: center;
+width: 100%;
+        }
+    }
+}

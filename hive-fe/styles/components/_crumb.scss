@@ -1,0 +1,26 @@
+.crumb_pack {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1.2rem;
+}
+
+.crumb {
+	display: inline-block;
+	background-color: #93b3e5;
+	padding: 0.8em;
+	background-color: $col-gray-svg;
+
+	button {
+		position: absolute;
+		top: 0;
+		right: 0;
+		transform: translate(30%, -30%);
+		svg {
+			display: block;
+		}
+	}
+
+	&_large {
+		grid-column: 1/-1;
+	}
+}

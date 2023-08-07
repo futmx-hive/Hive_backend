@@ -1,0 +1,49 @@
+
+
+tr,
+.tr {
+	.dropdown {
+		position: absolute;
+		right: 2rem;
+		top: 50%;
+		transform: translateY(-50%);
+		&_base {
+			top: 0;
+			// transform: translateX(-80%);
+		}
+
+		// &_list {
+		// 	z-index: 2;
+		// }
+	}
+
+
+}
+
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+	tr {
+	
+			border-bottom: 1px solid  darken($col-blue-light, 2%);
+	
+	}
+	th,
+	td {
+		padding: 1.5rem 2rem;
+		@include respond(tab_port){
+			padding: 1.5rem 1.3rem;
+		}
+		& > * {
+			color: $black;
+		}
+	}
+	th {
+		color: $col-black;
+		font-weight: $weight-2;
+		text-transform: uppercase;
+		text-align: left;
+	}
+
+}

@@ -1,0 +1,44 @@
+.fallback {
+	display: grid;
+	place-items: center;
+	position: relative;
+	.top_content {
+		position: absolute;
+		top: 2rem;
+		left: 5rem;
+		right: 2rem;
+	}
+	&.big {
+		padding: 10rem 0;
+	}
+	&.small {
+		padding: 6rem;
+	}
+	&.tiny {
+		padding: 4rem;
+	}
+	&_head {
+		margin-bottom: 1rem;
+		& > *:not(:last-child) {
+			margin-bottom: 0.5rem;
+		}
+	}
+	&_main {
+		max-width: 60%;
+	}
+	&_body {
+	}
+	&_img {
+		display: inline-block;
+		height: 20rem;
+		&.big {
+			transform: scale(1.4);
+			margin-bottom: 4rem;
+		}
+	}
+	&_controls {
+	}
+	&_body {
+		font-size: 1.5rem;
+	}
+}

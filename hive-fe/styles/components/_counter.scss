@@ -1,0 +1,33 @@
+.counter {
+	display: inline-block;
+
+	&_txt {
+		padding: 3px 8px;
+		border-top: 1px solid $col-bord-1;
+		border-bottom: 1px solid $col-bord-1;
+	}
+
+	&:hover {
+		transform: none;
+	}
+
+	&_btn {
+		padding: 0.4rem 0.6rem;
+	}
+
+	span {
+		display: inline-block;
+		padding: 0.2rem 1.2rem;
+		background-color: $col-white;
+	}
+
+	button {
+		flex: 1;
+
+		svg {
+			fill: lighten($col-blue, 19%);
+			width: 1.3rem;
+			height: 1.3rem;
+		}
+	}
+}

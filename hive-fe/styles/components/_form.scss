@@ -1,0 +1,372 @@
+.form {
+
+    &_grid_2 {
+        display: grid;
+        --width: 25rem;
+        --gap: 5rem;
+        grid-template-columns: repeat(auto-fit, minmax(var(--width), 1fr));
+        row-gap: 2.5rem;
+        column-gap: var(--gap);
+        &.no_stretch{
+            grid-template-columns: repeat(2, minmax(var(--width), auto)); 
+        }
+    }
+    &_half {
+        width: 60%;
+    }
+    &_heading {
+        font-size: 2.1rem;
+        text-transform: capitalize;
+        font-weight: $weight-2;
+        color: $col-black;
+    }
+    &_pkg {
+        display: grid;
+        gap: 2rem;
+        margin-top: 2rem;
+
+  
+
+        &_con {
+            padding: 2.5rem;
+        }
+    }
+    &_2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(2, max-content);
+        align-content: center;
+        align-items: start;
+        column-gap: 2rem;
+    }
+
+    &_group {
+        display: grid;
+        column-gap: 0.5rem;
+        & > div.no_addon {
+            &::before {
+                display: none;
+            }
+        }
+        & > div {
+            &::before {
+                content: attr(data-addon);
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                bottom: 0;
+                padding: 0 2ch;
+            }
+        }
+
+        &.error {
+            .form_input {
+                border: 2px solid hsl(0, 100%, 89%);
+            }
+        }
+    }
+    &_label {
+        margin-bottom: 0.7rem;
+        font-size: 15px;
+        color: $col-gray-dark;
+    }
+    &_input {
+        font-size: 1.4rem;
+        @include respond(gsm){
+            font-size: 16px;
+        }
+        &_txt{
+            font-family: inherit;
+            font-size: 1.4rem;
+            @include respond(gsm){
+                font-size: 16px;
+            }
+        }
+        &_pack {
+            border: 1px solid $col-gray-btn-l;
+            overflow: hidden;
+
+            &:hover {
+                border: 1px solid $col-pri-1;
+            }
+            .form_input {
+                border: none;
+
+                &:focus{
+                    border: none;
+                }
+                &,
+                &.error {
+                  
+                }
+            }
+        }
+        &_badge {
+            background-color: $col-gray-btn-l;
+            color: $col-pri;
+            &.error {
+                background-color: rgba(red, 0.6);
+                color: $col-white-1;
+            }
+        }
+        &_support {
+          
+            transition: 0.04s cubic-bezier(0.19, 1, 0.22, 1);
+            border: 1px solid $col-gray-btn-l;
+
+            &.error {
+                border: 2px solid hsl(0, 100%, 89%);
+                border-left: none;
+                &,
+                & > *,
+                & svg {
+                    stroke: rgba(red, 0.4);
+                    color: red;
+                }
+            }
+        }
+        &_support,
+        &_badge {
+            padding: 0 9px;
+            border-radius: 0 $border-rad $border-rad 0;
+        }
+        &:focus + &_badge {
+            background-color: $col-blue;
+            color: $col-white-1;
+        }
+        &:focus + &_support {
+            border: 1px solid $col-blue;
+        }
+        &:focus + &_support.error {
+            border: 2px solid hsl(0, 100%, 89%);
+        }
+    }
+    &_input_single,
+    &_input {
+        padding: 15px 1.4rem;
+        resize: none;
+        font-family: inherit;
+
+        transition: 0.04s cubic-bezier(0.19, 1, 0.22, 1);
+        border: 1px solid $col-gray-btn-l;
+        &::placeholder {
+            color: darken($col-gray-btn-l, 7%);
+        }
+        &:focus {
+            border: 1px solid $col-pri-1;
+        }
+        &:disabled
+        {
+            cursor: not-allowed;
+        }
+        & .error {
+            color: red;
+            font-size: 1.2rem;
+            font-weight: $weight-1;
+        }
+
+        &.error {
+            label {
+                &::before {
+                    color: red;
+                }
+            }
+            .form_input {
+                border-color: rgba(red, 0.4);
+                background: rgba(red, 0);
+            }
+        }
+    }
+
+    &_input_single {
+        padding: .7em .6rem;
+        color: $col-black;
+        font-weight: $weight-1;
+        @include respond(gsm){
+            padding: .5em .5em;
+        }
+
+        &::placeholder {
+             opacity: 0;
+            color: $col-bord-1;
+        }
+        &.error {
+            background: #fff;
+            border: 1px solid rgba(#f00, 1);
+        }
+    }
+}
+
+.checkbox {
+    input[type="checkbox"]:checked {
+        & ~ .checkbox_display {
+            border: 2px solid $col-blue;
+
+            &::before {
+                background-color: $col-blue;
+            }
+        }
+    }
+    &_display {
+        &::before {
+            content: "";
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+        }
+    }
+}
+.upload_form {
+    .react-tel-input .form-control {
+        width: 100% !important;
+    }
+}
+.address_form {
+    width: 45rem;
+    max-width: 100vw;
+    padding: 3rem 2rem;
+    padding-top: 0;
+
+    &_header {
+        padding: 1.5rem 0;
+
+        border-bottom: 1px solid $col-bord-2;
+    }
+    form {
+        display: grid;
+        row-gap: 2rem;
+    }
+
+    .form_submit {
+        justify-self: center;
+    }
+}
+.confirm_form {
+    // &_header {
+    // 	position: relative;
+    // 	padding: 1.5rem 0;
+    // }
+    &_pack {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0.5rem, 1fr));
+        column-gap: 1.5rem;
+    }
+
+    form {
+        // padding: 3rem 2rem;
+        display: grid;
+        // justify-items: center;
+        row-gap: 2rem;
+
+        // p {
+        //     width: 80%;
+        //     max-width: 90%;
+        // }
+    }
+}
+.faq {
+    &.open {
+        padding-bottom: 5rem;
+        .faq_btn {
+            transform: rotate(90deg);
+        }
+        .faq_header {
+            // padding: 3rem;
+            // padding-bottom: 2rem;
+            // margin-bottom: 1rem;
+
+            &::before {
+                transform: scale(1);
+                opacity: 0.6;
+                background-color: $col-gray-btn-l;
+            }
+        }
+    }
+    .form_pkg {
+        padding: 0 3rem;
+    }
+    &_header {
+        padding: 2rem 3rem;
+        cursor: pointer;
+        position: relative;
+
+        &::before {
+            content: "";
+            height: 1px;
+            width: 90%;
+            position: absolute;
+            top: 100%;
+            transform: scale(0);
+        }
+    }
+    &_btn {
+        transform-box: 50% 50%;
+        transition: 0.15s linear;
+    }
+}
+
+.react-tel-input{
+    display: flex;
+    
+    .form_input{
+        font-family: inherit;
+     flex: 1;
+     border: 1px solid  $col-gray-btn-l !important;
+
+     &:focus{
+        border-color: $col-pri !important;
+        transition: $transition
+     }
+    }
+}
+
+
+
+
+
+
+
+
+// REACT_SELECT
+.form_input__control {
+    @extend .form_input;
+    min-height: inherit !important;
+    padding: 0.5rem 1.4rem;
+    border-width: 1px !important;
+
+    &:focus {
+        // @extend .form_input:focus;
+        border: 1px solid $col-blue;
+        box-shadow: none;
+    }
+    &:hover {
+        border: 1px solid $col-gray-btn-l;
+      
+    }
+}
+.form_input__indicator-separator {
+    display: none !important;
+}
+.form_input__single-value {
+    font-size: 1.6rem;
+}
+
+
+
+
+.filter{
+    &_select{
+
+        & > *{
+            flex: 1;
+        }
+    }
+
+    &_sub{
+        &_pack{
+            align-items: start;
+        }
+    }
+
+}

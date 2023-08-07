@@ -1,0 +1,66 @@
+// VARIABLES
+@import "./abstract/abstract";
+// BASE STYLES
+@import "./base";
+// TYPOGRAPHY
+@import "./typography/typography";
+// UTILITIES
+@import "./utils/utils";
+// LAYOUT
+@import "./layout/dashboard";
+@import "./layout/layout";
+// COMPONENTS
+@import "./components/buttons";
+@import "./components/badge";
+@import "./components/nav";
+
+@import "./components/verifyform";
+@import "./components/verifybutton";
+// @import "./components/cartitem";
+
+
+
+@import "./components/added_entity";
+
+// GENERALLY SHARED COMPONENTS
+@import "./components/fallback";
+@import "./components/topnav";
+@import "./components/modal";
+@import "./components/socialbox";
+@import "./components/tabs";
+@import "./components/dropdown";
+@import "./components/crumb";
+@import "./components/toast";
+
+
+
+
+// FORMS
+@import "./components/form";
+@import "./components/searchbox";
+@import "./components/formselect";
+
+@import "./components/counter";
+
+@import "./components/confirm_otp_form";
+@import "./components/image_preview";
+@import "./components/create_order";
+
+
+
+// DASHBOARD SHARED COMPONENTS
+@import "./components/sidbar";
+
+
+// ORDER PAGE COMPONENTS
+// @import "./components/ordertable";
+// @import "./components/orderItem";
+
+
+//  MANAGEMENT PAGE COMPONENTS
+
+@import "./components/table";
+@import './components/dynamic_markup';
+
+
+

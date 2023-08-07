@@ -1,0 +1,68 @@
+// !BADGES
+
+[class^="badge_txt"],
+[class~="badge_txt"] {
+	text-transform: capitalize;
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+
+	&::before {
+		content: "";
+		width: 7px;
+		height: 7px;
+		background-color: currentColor;
+		border-radius: 50%;
+		display: inline-block;
+		// position: absolute;
+		// top: 50%;
+		// left: -10px;
+		// transform: translateY(-50%);
+	}
+}
+[class~="badge_bg"] {
+	border-radius: 5px;
+	padding: 7px 1rem;
+	font-weight: $weight-2;
+}
+.badge {
+	text-align: center;
+	display: inline-block;
+
+&_sm{
+	padding: 7px;
+}
+
+    &_gr{
+		background-color: $col-green-light;
+		color: $col-pri-1;
+		}
+	&_ora {
+		background-color: rgba($col-or, 0.35);
+		color: darken($col-or, 10%);
+	}
+	&_blu{
+		background-color: rgba($col-blue-dark, .2);
+		color: $col-blue-dark;
+	}
+
+	&_txt_red {
+		color: $col-red;
+	}
+	&_txt_b {
+		color: $col-blue;
+	}
+	&_txt_yell {
+		color: $col-yell;
+	}
+	&_txt_or {
+		color: $col-or;
+	}
+	&_txt_gr {
+		color: $col-green;
+	}
+	&.big {
+		font-size: 1.6rem;
+	}
+}

@@ -1,0 +1,75 @@
+@import '../../styles/abstract/abstract';
+.settings{
+   margin-top: 4rem;
+   overflow: hidden;
+
+   &_box{
+    max-width: 700px;
+  }
+
+
+     &_con{
+        padding: 3rem;
+        @include respond(gsm){
+            padding: 2rem;
+        }
+    }
+}
+
+
+
+.pay_mtd {
+    &_con{
+       display: grid;
+       grid-template-columns: repeat(2,minmax(300px,max-content));
+      
+       gap: 3rem;
+       @include respond(gsm){
+     grid-template-columns: auto;
+       }
+    }
+    &_item,
+    &_btn{
+        background-image: url('../../public/photos/pay_mtd.png');
+        padding: 2.5rem;
+        min-height: 13rem;
+    }
+    &_item{
+        display: flex;
+        align-items: flex-end;
+    }
+    &_btn{
+      display: grid;
+      place-items: center;
+    }
+}
+
+.pref{
+    &_box{
+       max-width: 500px;
+    }
+
+    &_con{
+   
+    }
+
+    &_item{
+        display: grid;
+        gap: 2rem;
+        padding: 2.2rem 0;
+        border-bottom:  $col-bord-2 1px solid;
+    }
+}
+
+.p{
+    width: 50%;
+
+    @include respond(gsm){
+        width: 100%;
+    }
+}
+.form_prof_base{
+    @include respond(gsm){
+       justify-content: center;
+    }
+}

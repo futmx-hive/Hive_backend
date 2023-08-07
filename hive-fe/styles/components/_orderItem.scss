@@ -1,0 +1,27 @@
+.order_item {
+	display: grid;
+	grid-template-columns: min-content 1fr;
+	column-gap: 1.5rem;
+	&_box {
+		display: grid;
+		row-gap: 0.8rem;
+	}
+	figure {
+		width: 10rem;
+		height: 10rem;
+		overflow: hidden;
+	}
+	img {
+		height: 100%;
+		object-fit: cover;
+	}
+
+	&_list {
+		row-gap: 0.7rem;
+
+		h6 {
+			display: inline-block;
+			margin-right: 4px;
+		}
+	}
+}

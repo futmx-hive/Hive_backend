@@ -1,0 +1,25 @@
+@import "../../../styles/abstract/abstract";
+@import "../../../styles/utils/utils";
+.q_actions{
+
+
+    &_control{
+        gap: 1.7rem;
+    }
+    &_btn{
+        @extend .round;
+        width: 5.6rem;
+        height: 5.6rem;
+       
+        svg{
+            width: 24px;
+            height:24px;
+        }
+    
+    }
+}
+
+.tx_items_con{
+    display: grid;
+    gap: 1.7rem;
+}

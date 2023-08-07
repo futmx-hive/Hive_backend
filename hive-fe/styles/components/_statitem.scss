@@ -1,0 +1,19 @@
+.statitem {
+	grid-template-areas:
+		'img count'
+		'img name';
+	align-items: center;
+	column-gap: 2rem;
+
+	&_img {
+		grid-area: img;
+		width: 8.8rem;
+		height: 8.8rem;
+	}
+	&_count {
+		grid-area: count;
+	}
+	&_name {
+		grid-area: name;
+	}
+}

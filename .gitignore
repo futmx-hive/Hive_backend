@@ -36,3 +36,7 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 key.txt
+hive-backend/node_modules
+hive-frontend/node_modules
+typesense-data
+mongo-db-egusi

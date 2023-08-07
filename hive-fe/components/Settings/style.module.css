@@ -1,0 +1,72 @@
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.settings {
+  margin-top: 4rem;
+  overflow: hidden;
+}
+.settings_box {
+  max-width: 700px;
+}
+.settings_con {
+  padding: 3rem;
+}
+@media (max-width: 31.25em) {
+  .settings_con {
+    padding: 2rem;
+  }
+}
+
+.pay_mtd_con {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(300px, max-content));
+  gap: 3rem;
+}
+@media (max-width: 31.25em) {
+  .pay_mtd_con {
+    grid-template-columns: auto;
+  }
+}
+.pay_mtd_item, .pay_mtd_btn {
+  background-image: url("../../public/photos/pay_mtd.png");
+  padding: 2.5rem;
+  min-height: 13rem;
+}
+.pay_mtd_item {
+  display: flex;
+  align-items: flex-end;
+}
+.pay_mtd_btn {
+  display: grid;
+  place-items: center;
+}
+
+.pref_box {
+  max-width: 500px;
+}
+.pref_item {
+  display: grid;
+  gap: 2rem;
+  padding: 2.2rem 0;
+  border-bottom: #e5e5e5 1px solid;
+}
+
+.p {
+  width: 50%;
+}
+@media (max-width: 31.25em) {
+  .p {
+    width: 100%;
+  }
+}
+
+@media (max-width: 31.25em) {
+  .form_prof_base {
+    justify-content: center;
+  }
+}/*# sourceMappingURL=style.module.css.map */

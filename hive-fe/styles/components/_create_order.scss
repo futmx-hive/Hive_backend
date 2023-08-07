@@ -1,0 +1,107 @@
+.create_order {
+    &_pkg {
+        & > * {
+            padding: 0 4rem;
+            padding-bottom: 4rem;
+        }
+    }
+    &_total {
+        & > *:not(:last-child) {
+            padding-bottom: 2rem;
+            border-bottom: 1px solid $col-bord-1;
+        }
+    }
+    &_block {
+        border-bottom: 1px solid $col-bord-3;
+    }
+    .form_input {
+        background-color: $col-white;
+    }
+    &_form {
+        .form_group {
+            display: block;
+            width: 100%;
+            // box-shadow: 0 0 6px 1px $col-bord-2;
+        }
+        .form_input {
+            font-size: inherit;
+            max-width: 100%;
+            // padding: 1rem;
+        }
+        .form_select_title {
+            margin-top: 0;
+        }
+    }
+    &_field_head,
+    &_field_tr {
+        display: grid;
+        // grid-template-columns: 1.2fr 1fr 8rem 0.7fr 1fr 0.7fr;
+
+        grid-template-columns: 0.3fr 1.3fr 1.2fr 0.7fr 1fr 1.3fr;
+        gap: 2rem;
+        border-color: $col-bord-3;
+        & > * {
+            padding: 1.5rem 1rem;
+        }
+        & > *:not(:last-child) {
+            border-right: 1px solid $col-bord-3;
+        }
+    }
+    &_field_head {
+        color: $col-black;
+        font-size: 1.5rem;
+        border-top-color: transparent;
+    }
+    &_field_tr {
+        .close_bt {
+            width: 1.7rem;
+            height: 1.7rem;
+            position: absolute;
+            top: 50%;
+            left: -3rem;
+            transform: translateY(-50%);
+
+            &::before {
+                content: "";
+                width: 80%;
+                height: 3px;
+                background-color: $col-white;
+            }
+        }
+    }
+}
+
+.customer_details_form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    align-self: start;
+    gap: 3rem;
+    .form_input {
+        box-shadow: 0 0 6px 1px $col-bord-2;
+    }
+}
+
+#tx {
+    .form-control {
+        width: 100%;
+    }
+}
+
+.cus {
+    margin: initial;
+    &_pack,
+    &_control {
+        gap: 4rem;
+    }
+    &_photo {
+        width: 14rem;
+        height: 14rem;
+    }
+    &_control {
+        flex: 1;
+
+        .form_group {
+            flex-basis: 60%;
+        }
+    }
+}

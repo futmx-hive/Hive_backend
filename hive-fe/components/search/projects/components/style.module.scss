@@ -1,0 +1,42 @@
+@import '../../../../styles/abstract/abstract';
+
+
+.proj{
+    &_list{
+     & > *{
+        border-top: 1px solid $slate6;
+     }
+     & > *:first-child{
+        border-top: none;
+     }
+       & > *:not(:last-child ) {
+
+            border-bottom:none;
+            
+        }
+
+
+    }
+
+    &_preview{
+        height: 90vh;
+        overflow-y: hidden;
+    }
+    &_item {
+
+
+        
+    }
+    &_img{
+    height: 18rem;
+
+        
+
+            img{
+                
+                height: 100%;
+                object-fit: cover;
+                object-position: 50% 50%;
+            }
+    }
+}

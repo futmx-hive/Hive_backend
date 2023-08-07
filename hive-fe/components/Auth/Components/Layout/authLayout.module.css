@@ -1,0 +1,81 @@
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.auth_layout {
+  display: flex;
+  width: 100vw;
+  min-height: 100vh;
+  position: relative;
+}
+.auth_layout_left {
+  flex-shrink: 0;
+  flex-grow: 1;
+  width: 48%;
+  padding: 3rem 5rem 5rem 5rem;
+}
+@media (max-width: 31.25em) {
+  .auth_layout_left {
+    width: 100%;
+    padding: 3rem 3rem 5rem 3rem;
+  }
+}
+.auth_layout_right {
+  background-size: cover;
+  background-image: url(../../../../public/photos/poik.webp);
+  width: 52%;
+  position: sticky;
+  top: 0;
+  right: 0;
+  height: 100vh;
+}
+
+.auth_form {
+  margin: auto;
+  margin-top: 3rem;
+  max-width: 500px;
+}
+
+.auth_layout_right_pane {
+  position: absolute;
+  inset: 0 0 0 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10rem 4rem 5rem 5rem;
+}
+
+.single_form {
+  max-width: 528px;
+}
+@media (max-width: 31.25em) {
+  .single_form {
+    min-height: 100vh;
+  }
+}
+.single_form_layout {
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+}
+.single_form_layout section {
+  flex: 1;
+}
+.single_form > div:last-child {
+  box-shadow: 0 5px 1.5rem rgba(18, 38, 63, 0.03);
+  padding: 3rem;
+}
+
+@media (max-width: 31.25em) {
+  .logo {
+    margin-bottom: 5rem;
+    margin-top: 1.5rem;
+    margin-left: 2rem;
+  }
+}/*# sourceMappingURL=authLayout.module.css.map */

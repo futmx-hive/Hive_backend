@@ -1,0 +1,124 @@
+$col-dis: #b3ccea;
+$col-gray-1: #f0f0f0;
+$col-gray-2: hsl(0, 0%, 45%);
+$col-white: #fff;
+// $col-white-1: #F2F2F2;
+$col-white-1: hsl(207, 100%, 98%);;
+$weight-1: 400;
+$weight-2: 600;
+$weight-3: 700;
+
+
+
+$col-black: #181E19;
+$black: #000;
+// $col-pri: #23a8f2;;
+// $col-pri-btn: #23a8f2;;
+// $col-pri-1:#23a8f2;;
+// $col-pri-light:#8ABCFF;;
+
+// --slate1: #fbfcfd;
+// --slate2: #f8f9fa;
+// --slate3: #f1f3f5;
+// --slate4: #eceef0;
+// --slate5: #e6e8eb;
+$slate6: #dfe3e6;
+$slate7: #d7dbdf;
+$slate8: #c1c8cd;
+$slate9: #889096;
+// --slate10: #7e868c;
+$slate11: #687076;
+$slate12: #11181c;
+$col-pri-btn: #151c20;
+$col-pri:#11181c;
+$col-pri-1:#687076;
+$col-pri-light:hsl(120, 1%, 16%);
+
+$col-gray-bg: #f2f2f2;
+$col-gray-light: #a8a8a8;
+$col-gray-dark: #353C37;
+
+$col-gray-btn-d: hsl(0, 0%, 47%);
+$col-gray-btn-l: #dbdbdb;
+
+$col-bord-1: hsl(0, 0%, 86%);
+$col-bord-2: #e5e5e5;
+$col-bord-3: #f4f1f1;
+$col-gray-svg: #b0b0b0;
+
+$col-blue: #5180ac;
+$col-blue-light: hsl(217, 57%, 96%);
+$col-blue-light-1: #ebf1fa;
+$col-red: #e30011;
+$col-red-btn: #e30011;
+$col-yell: #e3c204;
+$col-ora:#EF7329;
+$col-or: #FDE7C3;
+$col-green: hsl(149, 100%, 40%);
+$col-green-light:#E8F2EA;
+$col-green-dark: hsl(136, 54%, 34%);
+$col-yell-light:#ECFFC3;
+
+$col-blue-dark: #2767ce;
+$col-pri-dark: #395185;
+$col-blue-light: hsl(211, 64%, 96%);
+$shadow: rgba(197, 192, 249, 0.2);
+$shadow-1: 0 5px 1.5rem rgba(18, 38, 63, 0.03);
+
+//$col-red: hsl(0, 100%, 69%);
+$border-rad: 3px;
+$border-rad-1: 100px;
+
+$transition: 0.17s cubic-bezier(1, 0, 0, 1);
+
+@mixin center-abs {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+@mixin center-flex {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+@mixin respond_min($device) {
+	@media (min-width: #{$device /16 }em) {
+		@content;
+	}
+}
+
+@mixin respond($device) {
+	@if ($device== tab_land) {
+		@media (max-width: 1000/16 * 1em) {
+			@content;
+		}
+	} @else if ($device== tab_port) {
+		@media (max-width: 768/16 * 1em) {
+			@content;
+		}
+	} @else if ($device== gsm) {
+		@media (max-width: 500/16 * 1em) {
+			@content;
+		}
+	} @else if ($device== large_pc) {
+		@media (min-width: 1200/16 * 1em) {
+			@content;
+		}
+	} @else {
+		@media (max-width: #{$device /16 }em) {
+			@content;
+		}
+	}
+}
+@keyframes fadein {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}

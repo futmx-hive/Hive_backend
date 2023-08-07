@@ -1,0 +1,31 @@
+.dashboard_layout {
+	display: grid;
+	grid-template-columns: 260px 1fr;
+	height: 100vh;
+
+	@include respond(tab_port){
+		display: block;
+	}
+	
+
+	&.auto{
+		grid-template-columns: initial;
+	}
+
+
+	& > *:not(.sidebar , .backdrop) {
+		overflow-x: hidden;
+		position: relative;
+	}
+
+	.sidebar {
+		align-self: start;
+		height: 100vh;
+		&_small{
+			width: auto;
+		}
+		@include respond(gsm){
+			width: 71vw;
+		}
+	}
+}

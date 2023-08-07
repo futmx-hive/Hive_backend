@@ -1,0 +1,24 @@
+@import '../../styles/abstract/abstract';
+.comm{
+    padding: 4rem 0;
+}
+
+.top_comm,.balance{
+    img{
+        width: 100%;
+    }
+}
+.balance{
+    img{
+        width: 100%;
+        display: block;
+    }
+}
+.dash_left{
+    @include respond(gsm){
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+}
