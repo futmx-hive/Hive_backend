@@ -1,0 +1,57 @@
+version: '3.8'
+name: hivek
+services:
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: hivek
+      MONGO_INITDB_ROOT_PASSWORD: iw2345ASEEF
+      MONGO_INITDB_DATABASE: testify
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo-db-egusi:/data/db
+  typesense:
+    image: typesense/typesense:0.24.1
+    ports:
+      - "8108:8108"
+    volumes:
+      - ./typesense-data:/data
+    command: '--data-dir /data --api-key=xyz --enable-cors'
+  backend:
+    build:
+      context: hive-backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./hive-backend/src:/be/src
+      - /be/node_modules
+    environment:
+      - TYPESENSE_DEV_HOST=typesense
+    env_file:
+      - hive-backend/.env
+    depends_on:
+      - mongo
+      - typesense
+    container_name: hive_backend
+    ports:
+      - "4000:3002"
+    links:
+      - typesense:ts
+      - mongo:mg
+  webapp:
+    build:
+      context: hive-fe
+      dockerfile: Dockerfile
+    volumes:
+      - ./hive-fe:/fe
+      - /fe/node_modules
+    container_name: hive_frontend
+    depends_on:
+      - backend
+    ports:
+      - "4001:3001"
+    links:
+      - backend:be
+
+  
