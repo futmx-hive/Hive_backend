@@ -38,5 +38,5 @@ lerna-debug.log*
 key.txt
 hive-backend/node_modules
 hive-frontend/node_modules
-typesense-data
-mongo-db-egusi
+typesense-data/
+mongo-db-egusi/
